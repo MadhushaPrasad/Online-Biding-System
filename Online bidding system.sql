@@ -9,6 +9,7 @@ CREATE TABLE Users(
     f_Name varchar(255) NOT NULL,
 	email VARCHAR(100) NOT NULL,
 	address VARCHAR(255) NOT NULL,
+	password VARCHAR(10) NOT NULL,
 	type VARCHAR(10) NOT NULL,
 	CONSTRAINT PRIMARY KEY(userID)
 );
