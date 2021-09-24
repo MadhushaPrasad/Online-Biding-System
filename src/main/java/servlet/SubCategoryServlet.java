@@ -14,13 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Category;
+import serviceImpl.CategoryServiceImpl;
 import util.DBConnection;
 
-@WebServlet("/category")
-public class CategoryServlet extends HttpServlet {
+@WebServlet("/subCategory")
+public class SubCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public CategoryServlet() {
+	public SubCategoryServlet() {
 		super();
 	}
 
@@ -29,7 +30,7 @@ public class CategoryServlet extends HttpServlet {
 
 		try {
 			Connection connection = DBConnection.getInstance().getConnection();
-			PreparedStatement pstm = connection.prepareStatement("SELECT * FROM Category");
+			PreparedStatement pstm = connection.prepareStatement("SELECT * FROM Sub_Category");
 			ResultSet rst = pstm.executeQuery();
 			ArrayList<Category> allCategory = new ArrayList<>();
 			while (rst.next()) {
@@ -50,18 +51,19 @@ public class CategoryServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String categoryName = request.getParameter("categoryName");
+		int categoryID = Integer.parseInt(request.getParameter("categoryName"));
+		String categoryName = request.getParameter("subCategory");
 
 		try {
 			Connection connection = DBConnection.getInstance().getConnection();
-			String sql = "INSERT INTO Category(name) VALUES('"+categoryName+"')";
+			String sql = "INSERT INTO Sub_Category(category_ID,name) VALUES("+categoryID+",'" + categoryName + "')";
 			PreparedStatement pstm = connection.prepareStatement(sql);
 			int i = pstm.executeUpdate();
 			if (i > 0) {
-                System.out.println("Added");
-            } else {
-            	System.out.println("Error");
-            }
+				System.out.println("Added");
+			} else {
+				System.out.println("Error");
+			}
 
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
