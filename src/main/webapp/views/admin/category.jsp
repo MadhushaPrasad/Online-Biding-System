@@ -9,14 +9,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <!-- import icon -->
+    <%--    import icon--%>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
-    <!-- custom css -->
+    <%--    custom css--%>
     <link rel="stylesheet" href="../../assets/css/index.css"/>
     <link rel="stylesheet" href="../../assets/css/admin/buttons.css"/>
 
-    <!-- import Bootstrap css -->
+    <%--    import Bootstrap css--%>
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css"/>
 
     <title>Admin || Category</title>
@@ -92,7 +92,7 @@
             </div>
 
             <div class="col-12">
-                <!--    Category form div-->
+                <%--Category form div--%>
                 <div class="row mt-3">
                     <div class="col-lg-12">
                         <%--search category--%>
@@ -144,7 +144,7 @@
             </div>
         </div>
         <div class="item">
-            <!--    On Working Doctors table div-->
+            <%--            On Working Doctors table div--%>
             <div class="row ml-md-2 mt-3">
                 <h4 class="mt-3 mb-4">Ongoing Category</h4>
                 <table class="table table-responsive">
@@ -190,7 +190,7 @@
             </div>
 
             <div class="col-12">
-                <!-- Sub Category form div-->
+            <%--Sub Category form div--%>
                 <div class="row mt-3">
                     <div class="col-12">
                         <form method="post" action="">
@@ -247,7 +247,7 @@
             </div>
         </div>
         <div class="item">
-            <!--    On Working Doctors table div-->
+            <%--On Working Doctors table div--%>
             <div class="row ml-md-2 mt-3">
                 <h4 class="mt-3 mb-4">Ongoing Sub Category</h4>
                 <table class="table table-responsive">
