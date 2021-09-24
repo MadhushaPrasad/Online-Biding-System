@@ -46,7 +46,7 @@
       <div class="sidebar">
         <ul>
           <li>
-            <a href="#">
+            <a href="${pageContext.request.contextPath}/views/admin/index.jsp">
               <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
               <span class="title">DashBoard</span>
             </a>
@@ -94,16 +94,16 @@
             <!--    Category form div-->
             <div class="row mt-3">
               <div class="col-lg-12">
-                <form method="post" action="">
+                <form method="post" action="${pageContext.request.contextPath}/category">
                   <div class="row mb-2">
                     <div class="col-lg-6 col-sm-12">
                       <div class="input-group mb-2">
                         <input
-                          type="text"
-                          id="subCategoryIdFeild"
-                          class="form-control"
-                          placeholder="Sub Category ID"
-                          name="subCategory"
+                                type="text"
+                                id="subCategoryIdFeild"
+                                class="form-control"
+                                placeholder="Sub Category ID"
+                                name="subCategory"
                         />
                       </div>
                     </div>
@@ -114,16 +114,16 @@
                 </form>
               </div>
               <div class="col-12">
-                <form method="post" action="/Online-Biding-System/category">
+                <form method="post" action="${pageContext.request.contextPath}/category">
                   <div class="row mb-2">
                     <div class="col-lg-6 col-sm-12">
                       <div class="input-group mb-3">
                         <input
-                          type="text"
-                          id="subCategoryNameFeild"
-                          class="form-control"
-                          placeholder="Sub Category Name"
-                          name="subCategoryName"
+                                type="text"
+                                id="subCategoryNameFeild"
+                                class="form-control"
+                                placeholder="Sub Category Name"
+                                name="subCategoryName"
                         />
                       </div>
                     </div>

@@ -43,7 +43,7 @@
       <div class="sidebar z-index">
         <ul>
           <li>
-            <a href="#" class="active">
+            <a href="${pageContext.request.contextPath}/views/admin/index.jsp" class="active">
               <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
               <span class="title">DashBoard</span>
             </a>
@@ -61,7 +61,7 @@
             </a>
           </li>
           <li>
-            <a href="subCategory.html">
+            <a href="${pageContext.request.contextPath}/views/admin/category.jsp">
               <span class="icon"><i class="fas fa-blog"></i></span>
               <span class="title">Category</span>
             </a>
