@@ -8,5 +8,7 @@
 </head>
 <body>
 <h1>Hello</h1>
+<a href="/Online-Biding-System/views/category.jsp">Category</a>
+
 </body>
 </html>

@@ -6,6 +6,7 @@ target/
 libs/
 tmp/
 node_modules/
+build/
 
 # testing
 /coverage
