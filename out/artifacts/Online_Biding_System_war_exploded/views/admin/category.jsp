@@ -110,8 +110,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <button type="button" id="subCatSearch" name="searchCategoryButton"
-                                            class="btn btn-warning text-white"
+                                    <button type="button" id="subCatSearch" name="searchCategoryButton" class="btn btn-warning text-white"
                                             value="Search">Search
                                     </button>
                                 </div>
