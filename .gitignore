@@ -7,6 +7,8 @@ libs/
 tmp/
 node_modules/
 build/
+out/
+out
 
 # testing
 /coverage
