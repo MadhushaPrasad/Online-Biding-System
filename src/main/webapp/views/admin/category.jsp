@@ -19,6 +19,9 @@
     <%--    import Bootstrap css--%>
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css"/>
 
+    <%--    import sweet alert js--%>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <title>Admin || Category</title>
 </head>
 <body>
@@ -96,16 +99,16 @@
                 <div class="row mt-3">
                     <div class="col-lg-12">
                         <%--search category--%>
-                        <form method="get" action="${pageContext.request.contextPath}/category">
+                        <form method="" action="${pageContext.request.contextPath}/category">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">
                                         <input
                                                 type="text"
-                                                id="subCategoryId"
+                                                id="categoryId"
                                                 class="form-control"
-                                                placeholder="Sub Category ID"
-                                                name="subCategoryId"
+                                                placeholder="Category ID"
+                                                name="categoryId"
                                         />
                                     </div>
                                 </div>
@@ -119,22 +122,22 @@
                         </form>
                     </div>
                     <div class="col-12">
-                        <form method="post" action="${pageContext.request.contextPath}/category">
+                        <form id="categoryForm" method="" action="${pageContext.request.contextPath}/category">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
                                         <input
                                                 type="text"
-                                                id="subCategoryNameFeild"
+                                                id="categoryInput"
                                                 class="form-control"
-                                                placeholder="Sub Category Name"
-                                                name="subCategoryName"
+                                                placeholder="Category Name"
+                                                name="categoryNameInput"
                                         />
                                     </div>
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
-                                <button class="btn btn-primary">Create</button>
+                                <button type="button" class="btn btn-primary" id="btnCreate">Create</button>
                                 <button class="btn btn-warning text-white">update</button>
                                 <button class="btn btn-danger">Cancel</button>
                             </div>
@@ -152,12 +155,10 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Category Name</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody id="categoryTableBody">
-                    <%
-
-                    %>
                     </tbody>
                 </table>
                 <nav
@@ -190,7 +191,7 @@
             </div>
 
             <div class="col-12">
-            <%--Sub Category form div--%>
+                <%--Sub Category form div--%>
                 <div class="row mt-3">
                     <div class="col-12">
                         <form method="post" action="">
@@ -285,7 +286,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/index.js"></script>
