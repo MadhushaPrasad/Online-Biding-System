@@ -2,9 +2,7 @@ package servlet;
 
 import util.DBConnection;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObjectBuilder;
+import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +32,7 @@ public class CategoryServlet extends HttpServlet {
             Connection connection = DBConnection.getInstance().getConnection();
             switch (buttonType) {
                 case "Search":
-                    String subCategoryID = request.getParameter("subCategoryId");
+                    String subCategoryID = request.getParameter("categoryId");
                     PreparedStatement pst = connection.prepareStatement("SELECT * FROM category WHERE category_ID=?");
                     pst.setObject(1, subCategoryID);
                     ResultSet rst = pst.executeQuery();
@@ -79,10 +77,8 @@ public class CategoryServlet extends HttpServlet {
             }
 
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
 
         System.out.println(buttonType);
@@ -92,7 +88,7 @@ public class CategoryServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String categoryName = request.getParameter("categoryName");
+        String categoryName = request.getParameter("categoryNameInput");
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
@@ -100,8 +96,10 @@ public class CategoryServlet extends HttpServlet {
             PreparedStatement pstm = connection.prepareStatement(sql);
             int i = pstm.executeUpdate();
             if (i > 0) {
+                response.getWriter().print("Category Added");
                 System.out.println("Added");
             } else {
+                response.getWriter().print("Error");
                 System.out.println("Error");
             }
 
@@ -118,6 +116,18 @@ public class CategoryServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+        JsonReader reader = Json.createReader(req.getInputStream());
+        JsonObject jsonObject = reader.readObject();
+        String categoryID = jsonObject.getString("categoryId");
+        System.out.println(categoryID);
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement pst = connection.prepareStatement("DELETE FROM Category WHERE category_ID=?");
+            pst.setObject(1, categoryID);
+            resp.getWriter().print(pst.executeUpdate() > 0);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
