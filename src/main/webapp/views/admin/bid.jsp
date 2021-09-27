@@ -61,7 +61,7 @@
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/views/admin/seller.jsp" class="active">
+                <a href="${pageContext.request.contextPath}/views/admin/seller.jsp">
                     <span class="icon"><i class="fas fa-user-tie"></i></span>
                     <span class="title">Seller</span>
                 </a>
@@ -85,7 +85,7 @@
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/views/admin/bid.jsp">
+                <a href="${pageContext.request.contextPath}/views/admin/bid.jsp" class="active">
                     <span class="icon"><i class="fas fa-gavel"></i></span>
                     <span class="title">Bid</span>
                 </a>
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
-                                <button type="button" class="btn btn-primary" id="btnCreate">Bid</button>
+                                <button type="button" class="btn btn-primary" id="btnCreate">Submit</button>
                                 <button class="btn btn-warning text-white btnUpdate">update</button>
                                 <button type="submit" class="btn btn-danger">Cancel</button>
                             </div>

@@ -26,7 +26,7 @@
     <%--    import sweet alert js--%>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <title>Admin || Seller</title>
+    <title>Admin || Bidder</title>
 </head>
 <body>
 <div id="wrapper">
@@ -60,13 +60,13 @@
                 </a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/views/admin/seller.jsp" class="active">
+                <a href="${pageContext.request.contextPath}/views/admin/seller.jsp">
                     <span class="icon"><i class="fas fa-user-tie"></i></span>
                     <span class="title">Seller</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/views/admin/bidder.jsp" class="active">
                     <span class="icon"><i class="fas fa-child"></i></span>
                     <span class="title">Bidder</span>
                 </a>
@@ -91,33 +91,33 @@
             </li>
         </ul>
     </div>
-    <%--Seller section--%>
+    <%--Bidder section--%>
     <div class="main_container">
         <div class="item">
             <div class="item">
-                <h4 class="title font-weight-bold">Seller</h4>
+                <h4 class="title font-weight-bold">Bidder</h4>
             </div>
 
             <div class="col-12">
-                <%--Seller form div--%>
+                <%--Bidder form div--%>
                 <div class="row mt-3">
                     <div class="col-lg-12">
-                        <%--search Seller--%>
+                        <%--search Bidder--%>
                         <form method="" action="${pageContext.request.contextPath}/#">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">
                                         <input
                                                 type="text"
-                                                id="sellerID"
+                                                id="bidderId"
                                                 class="form-control"
-                                                placeholder="Seller ID"
-                                                name="sellerId"
+                                                placeholder="Bidder ID"
+                                                name="bidderID"
                                         />
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <button type="button" id="btnSellerSearch" name="searchSellerButton"
+                                    <button type="button" id="btnBidderSearch" name="searchBidderButton"
                                             class="btn btn-warning text-white"
                                             value="Search">Search
                                     </button>
@@ -206,14 +206,14 @@
             </div>
         </div>
         <div class="item">
-            <%--            On going Seller table div--%>
+            <%--            On going Bidder table div--%>
             <div class="row ml-md-2 mt-3">
-                <h4 class="mt-3 mb-4">Ongoing Seller</h4>
+                <h4 class="mt-3 mb-4">Bidder List</h4>
                 <table class="table table-responsive">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Seller User Name</th>
+                        <th scope="col">Bidder User Name</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
@@ -222,7 +222,7 @@
                         <th></th>
                     </tr>
                     </thead>
-                    <tbody id="sellerTableBody">
+                    <tbody id="bidderTableBody">
                     </tbody>
                 </table>
                 <nav
