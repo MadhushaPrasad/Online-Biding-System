@@ -147,7 +147,7 @@
             </div>
         </div>
         <div class="item">
-            <%--            On Working Doctors table div--%>
+            <%--            On GOing Category table div--%>
             <div class="row ml-md-2 mt-3">
                 <h4 class="mt-3 mb-4">Ongoing Category</h4>
                 <table class="table table-responsive">
@@ -248,7 +248,7 @@
             </div>
         </div>
         <div class="item">
-            <%--On Working Doctors table div--%>
+            <%--On Going Sub Category table div--%>
             <div class="row ml-md-2 mt-3">
                 <h4 class="mt-3 mb-4">Ongoing Sub Category</h4>
                 <table class="table table-responsive">
