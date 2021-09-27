@@ -1,6 +1,10 @@
-<%@ page import="javax.json.JsonObject" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Madhusha Prasad
+  Date: 9/27/2021
+  Time: 11:25 PM
+  To change this template use File | Settings | File Templates.
+--%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +26,7 @@
     <%--    import sweet alert js--%>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <title>Admin || Category</title>
+    <title>Admin || Seller</title>
 </head>
 <body>
 <div id="wrapper">
@@ -56,7 +60,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/views/admin/seller.jsp" class="active">
                     <span class="icon"><i class="fas fa-user-tie"></i></span>
                     <span class="title">Seller</span>
                 </a>
@@ -68,7 +72,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="active">
+                <a href="#">
                     <span class="icon"><i class="fas fa-blog"></i></span>
                     <span class="title">Category</span>
                 </a>
@@ -87,33 +91,33 @@
             </li>
         </ul>
     </div>
-    <%--category section--%>
+    <%--Seller section--%>
     <div class="main_container">
         <div class="item">
             <div class="item">
-                <h4 class="title font-weight-bold">Category</h4>
+                <h4 class="title font-weight-bold">Seller</h4>
             </div>
 
             <div class="col-12">
-                <%--Category form div--%>
+                <%--Seller form div--%>
                 <div class="row mt-3">
                     <div class="col-lg-12">
-                        <%--search category--%>
-                        <form method="" action="${pageContext.request.contextPath}/category">
+                        <%--search Seller--%>
+                        <form method="" action="${pageContext.request.contextPath}/#">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">
                                         <input
                                                 type="text"
-                                                id="categoryId"
+                                                id="sellerID"
                                                 class="form-control"
-                                                placeholder="Category ID"
-                                                name="categoryId"
+                                                placeholder="Seller ID"
+                                                name="sellerId"
                                         />
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <button type="button" id="subCatSearch" name="searchCategoryButton"
+                                    <button type="button" id="btnSellerSearch" name="searchSellerButton"
                                             class="btn btn-warning text-white"
                                             value="Search">Search
                                     </button>
@@ -122,24 +126,79 @@
                         </form>
                     </div>
                     <div class="col-12">
-                        <form id="categoryForm" method="" action="${pageContext.request.contextPath}/category">
+                        <form id="sellerForm" method="" action="${pageContext.request.contextPath}/#">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
                                         <input
                                                 type="text"
-                                                id="categoryInput"
+                                                id="userName"
                                                 class="form-control"
-                                                placeholder="Category Name"
-                                                name="categoryNameInput"
+                                                placeholder="User Name"
+                                                name="userName"
                                         />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <input
+                                                type="text"
+                                                id="fName"
+                                                class="form-control"
+                                                placeholder="First Name"
+                                                name="firstName"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <input
+                                                type="text"
+                                                id="lName"
+                                                class="form-control"
+                                                placeholder="Last Name"
+                                                name="lastName"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <input
+                                                type="email"
+                                                id="email"
+                                                class="form-control"
+                                                placeholder="Email"
+                                                name="email"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <input
+                                                type="text"
+                                                id="tel"
+                                                class="form-control"
+                                                placeholder="Telephone"
+                                                name="tel"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="input-group mb-3">
+                                        <textarea placeholder="Address" class="form-control" id="address"
+                                                  name="Address"
+                                                  rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
                                 <button type="button" class="btn btn-primary" id="btnCreate">Create</button>
-                                <button class="btn btn-warning text-white">update</button>
-                                <button class="btn btn-danger">Cancel</button>
+                                <button class="btn btn-warning text-white btnUpdate">update</button>
+                                <button type="submit" class="btn btn-danger">Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -147,119 +206,24 @@
             </div>
         </div>
         <div class="item">
-            <%--            On GOing Category table div--%>
+            <%--            On going Seller table div--%>
             <div class="row ml-md-2 mt-3">
-                <h4 class="mt-3 mb-4">Ongoing Category</h4>
+                <h4 class="mt-3 mb-4">Ongoing Seller</h4>
                 <table class="table table-responsive">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Category Name</th>
+                        <th scope="col">Seller User Name</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telephone</th>
+                        <th scope="col">Address</th>
                         <th></th>
                     </tr>
                     </thead>
-                    <tbody id="categoryTableBody">
+                    <tbody id="sellerTableBody">
                     </tbody>
-                </table>
-                <nav
-                        aria-label="Page navigation example"
-                        class="offset-lg-4 offset-md-3"
-                >
-                    <ul class="pagination justify-content-end">
-                        <li class="page-item disabled">
-                            <a
-                                    class="page-link"
-                                    href="#"
-                                    tabindex="-1"
-                                    aria-disabled="true"
-                            >Previous</a
-                            >
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <div class="item">
-            <div class="item">
-                <h4 class="title font-weight-bold">SubCategory</h4>
-            </div>
-
-            <div class="col-12">
-                <%--Sub Category form div--%>
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <form method="post" action="">
-                            <div class="row mb-2">
-                                <div class="col-lg-6 col-sm-12">
-                                    <div class="input-group mb-2">
-                                        <input
-                                                type="text"
-                                                id="subCategoryIdFeild"
-                                                class="form-control"
-                                                placeholder="Sub Category ID"
-                                                name="subCategory"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <button class="btn btn-warning text-white">Search</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-12">
-                        <form method="post" action="/Online-Biding-System/subCategory">
-                            <div class="row mb-2">
-                                <div class="col-lg-6 col-sm-12">
-                                    <div class="input-group mb-3">
-                                        <select class="custom-select" id="department">
-                                            <option selected>Category</option>
-                                            <option value="1">Laptop</option>
-                                            <option value="2">Mobile Phone</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <div class="input-group mb-3">
-                                        <input
-                                                type="text"
-                                                id="subCategoryNameFeild"
-                                                class="form-control"
-                                                placeholder="Sub Category Name"
-                                                name="subCategoryName"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row d-flex justify-content-around mt-4">
-                                <button class="btn btn-primary">Create</button>
-                                <button class="btn btn-warning text-white">update</button>
-                                <button class="btn btn-danger">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <%--On Going Sub Category table div--%>
-            <div class="row ml-md-2 mt-3">
-                <h4 class="mt-3 mb-4">Ongoing Sub Category</h4>
-                <table class="table table-responsive">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Category Name</th>
-                        <th scope="col">Sub Category Name</th>
-                    </tr>
-                    </thead>
-                    <tbody id="categoryBody"></tbody>
                 </table>
                 <nav
                         aria-label="Page navigation example"
@@ -289,6 +253,6 @@
 </div>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/index.js"></script>
-<script src="../../assets/js/admin/category.js"></script>
+<script src="../../assets/js/admin/seller.js"></script>
 </body>
 </html>
