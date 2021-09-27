@@ -2,99 +2,112 @@ DROP DATABASE onlineBiddingSystem;
 CREATE DATABASE onlineBiddingSystem;
 USE onlineBiddingSystem;
 
-CREATE TABLE Users(
-	userID int NOT NULL AUTO_INCREMENT,
-	userName VARCHAR(25) NOT NULL,
-	l_Name varchar(255) NOT NULL,
-    f_Name varchar(255) NOT NULL,
-	email VARCHAR(100) NOT NULL,
-	address VARCHAR(255) NOT NULL,
-	password VARCHAR(10) NOT NULL,
-	type VARCHAR(10) NOT NULL,
-	CONSTRAINT PRIMARY KEY(userID)
+CREATE TABLE Users
+(
+    userID    int          NOT NULL AUTO_INCREMENT,
+    userName  VARCHAR(25)  NOT NULL,
+    f_Name    varchar(255) NOT NULL,
+    l_Name    varchar(255) NOT NULL,
+    email     VARCHAR(100) NOT NULL,
+    telephone VARCHAR(10)  NOT NULL,
+    address   VARCHAR(255) NOT NULL,
+    password  VARCHAR(10)  NOT NULL,
+    img       VARCHAR(255) NOT Null,
+    type      VARCHAR(10)  NOT NULL,
+    CONSTRAINT PRIMARY KEY (userID)
 );
 
-CREATE TABLE User_Contact(
-	userID int NOT NULL,
-	telephone VARCHAR(10) NOT NULL,
-	CONSTRAINT PRIMARY KEY(telephone),
-	CONSTRAINT FOREIGN KEY(userID) REFERENCES  Users(userID)
+CREATE TABLE Category
+(
+    category_ID int          NOT NULL AUTO_INCREMENT,
+    name        VARCHAR(150) NOT NULL,
+    CONSTRAINT PRIMARY KEY (category_ID)
 );
 
-CREATE TABLE Category(
-	category_ID int NOT NULL AUTO_INCREMENT,
-	name VARCHAR (150) NOT NULL,
-	CONSTRAINT PRIMARY KEY(category_ID)
+CREATE TABLE Sub_Category
+(
+    subCategory_ID int          NOT NULL AUTO_INCREMENT,
+    category_ID    int          NOT NULL,
+    name           VARCHAR(150) NOT NULL,
+    CONSTRAINT PRIMARY KEY (subCategory_ID),
+    CONSTRAINT FOREIGN KEY (category_ID) REFERENCES Category (category_ID)
+        On UPDATE CASCADE On DELETE CASCADE
 );
 
-CREATE TABLE Sub_Category(
-	subCategory_ID int NOT NULL AUTO_INCREMENT,
-	category_ID int NOT NULL,
-	name VARCHAR (150) NOT NULL,
-	CONSTRAINT PRIMARY KEY(subCategory_ID),
-	CONSTRAINT FOREIGN KEY(category_ID) REFERENCES  Category(category_ID)
+CREATE TABLE Item
+(
+    itemID      int            NOT NULL AUTO_INCREMENT,
+    category_ID int            NOT NULL,
+    userID      int            NOT NULL,
+    name        VARCHAR(255)   NOT NULL,
+    description LONGTEXT       NOT NULL,
+    price       DECIMAL(10, 2) NOT NULL,
+    image       VARCHAR(255)   NOT NULL,
+    status      VARCHAR(10)    NOT NULL,
+    CONSTRAINT PRIMARY KEY (itemID),
+    CONSTRAINT FOREIGN KEY (category_ID) REFERENCES Category (category_ID)
+        On UPDATE CASCADE On DELETE CASCADE,
+    CONSTRAINT FOREIGN KEY (userID) REFERENCES Users (userID)
+        On UPDATE CASCADE On DELETE CASCADE
 );
 
-CREATE TABLE Item(
-	itemID int NOT NULL AUTO_INCREMENT,
-	category_ID int NOT NULL,
-	userID int NOT NULL,
-	name VARCHAR (255) NOT NULL,
-	description LONGTEXT NOT NULL,
-	price DECIMAL(10,2) NOT NULL,
-	image VARCHAR(255) NOT NULL,
-	status VARCHAR(10) NOT NULL,
-	CONSTRAINT PRIMARY KEY(itemID),
-	CONSTRAINT FOREIGN KEY(category_ID) REFERENCES  Category(category_ID),
-	CONSTRAINT FOREIGN KEY(userID) REFERENCES  Users(userID)
+CREATE TABLE Item_payment
+(
+    item_PaymentID int            NOT NULL AUTO_INCREMENT,
+    itemID         int            NOT NULL,
+    cardNumber     VARCHAR(16)    NOT NULL,
+    amount         DECIMAL(10, 2) NOT NULL,
+    eXDate         DATE           NOT NULL,
+    CONSTRAINT PRIMARY KEY (item_PaymentID),
+    CONSTRAINT FOREIGN KEY (itemID) REFERENCES Item (itemID)
+        On UPDATE CASCADE On DELETE CASCADE
 );
 
-CREATE TABLE Item_payment(
-	item_PaymentID int NOT NULL AUTO_INCREMENT,
-	itemID int NOT NULL,
-	cardNumber VARCHAR(16) NOT NULL,
-	amount DECIMAL(10,2) NOT NULL,
-	eXDate DATE NOT NULL,
-	CONSTRAINT PRIMARY KEY(item_PaymentID),
-	CONSTRAINT FOREIGN KEY(itemID) REFERENCES  Item(itemID)
+CREATE TABLE Item_Payment_Type
+(
+    item_PaymentType VARCHAR(150) NOT NULL,
+    item_PaymentID   int          NOT NULL,
+    CONSTRAINT PRIMARY KEY (item_PaymentType),
+    CONSTRAINT FOREIGN KEY (item_PaymentID) REFERENCES Item_payment (item_PaymentID)
+        On UPDATE CASCADE On DELETE CASCADE
 );
 
-CREATE TABLE Item_Payment_Type(
-	item_PaymentType VARCHAR(150) NOT NULL,
-	item_PaymentID int NOT NULL,
-	CONSTRAINT PRIMARY KEY(item_PaymentType),
-	CONSTRAINT FOREIGN KEY(item_PaymentID) REFERENCES  Item_payment(item_PaymentID)
+CREATE TABLE Bid
+(
+    bid_ID   int            NOT NULL AUTO_INCREMENT,
+    userID   int            NOT NULL,
+    itemID   int            NOT NULL,
+    amount   DECIMAL(10, 2) NOT NULL,
+    bid_time DATE           NOT NULL,
+    bid_date TIME           NOT NULL,
+    status   VARCHAR(10)    NOT NULL,
+    CONSTRAINT PRIMARY KEY (bid_ID),
+    CONSTRAINT FOREIGN KEY (userID) REFERENCES Users (userID)
+        On UPDATE CASCADE On DELETE CASCADE,
+    CONSTRAINT FOREIGN KEY (itemID) REFERENCES Item (itemID)
+        On UPDATE CASCADE On DELETE CASCADE
 );
 
-CREATE TABLE Bid(
-	bid_ID int NOT NULL AUTO_INCREMENT,
-	userID int NOT NULL,
-	itemID int NOT NULL,
-	amount DECIMAL(10,2) NOT NULL,
-	bid_time DATE NOT NULL,
-    bid_date TIME NOT NULL,
-	status VARCHAR(10) NOT NULL,
-	CONSTRAINT PRIMARY KEY(bid_ID),
-	CONSTRAINT FOREIGN KEY(userID) REFERENCES  Users(userID),
-	CONSTRAINT FOREIGN KEY(itemID) REFERENCES  Item(itemID)
+CREATE TABLE Payment
+(
+    bid_PaymentID int            NOT NULL AUTO_INCREMENT,
+    bid_ID        int            NOT NULL,
+    cardNumber    VARCHAR(16)    NOT NULL,
+    amount        DECIMAL(10, 2) NOT NULL,
+    eXDate        DATE           NOT NULL,
+    CONSTRAINT PRIMARY KEY (bid_PaymentID),
+    CONSTRAINT FOREIGN KEY (bid_ID) REFERENCES Bid (bid_ID)
+        On UPDATE CASCADE On DELETE CASCADE
 );
 
-CREATE TABLE Payment(
-	bid_PaymentID int NOT NULL AUTO_INCREMENT,
-	bid_ID int NOT NULL,
-	cardNumber VARCHAR(16) NOT NULL,
-	amount DECIMAL(10,2) NOT NULL,
-	eXDate DATE NOT NULL,
-	CONSTRAINT PRIMARY KEY(bid_PaymentID),
-	CONSTRAINT FOREIGN KEY(bid_ID) REFERENCES  Bid(bid_ID)
-);
-
-CREATE TABLE FeedBack(
-	fb_ID int NOT NULL AUTO_INCREMENT,
-	userID int NOT NULL,
-	description LONGTEXT NOT NULL,
-	CONSTRAINT PRIMARY KEY(fb_ID),
-	CONSTRAINT FOREIGN KEY(userID) REFERENCES  Users(userID)
+CREATE TABLE FeedBack
+(
+    fb_ID       int      NOT NULL AUTO_INCREMENT,
+    userID      int      NOT NULL,
+    description LONGTEXT NOT NULL,
+    CONSTRAINT PRIMARY KEY (fb_ID),
+    CONSTRAINT FOREIGN KEY (userID) REFERENCES Users (userID)
+        On UPDATE CASCADE On DELETE CASCADE
 );
 
 
