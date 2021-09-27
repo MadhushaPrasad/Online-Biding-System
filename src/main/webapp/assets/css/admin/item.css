@@ -1,0 +1,46 @@
+
+.itemContainer {
+    width: 70%;
+    height: 50%;
+    margin-left: 36%;
+    right: 0;
+    margin-bottom: 30px;
+}
+
+
+#itemImage {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 15px rgba(126, 118, 249, 0.702);
+    background-size: cover;
+    background-position: 50% 50%;
+    margin: 50px 0 0 0;
+}
+
+
+#itemImageInput {
+    background-color: #ffffff;
+    height: 35px !important;
+    padding-left: 16px !important;
+    width: 60px !important;
+    border-radius: 20px;
+    box-shadow: 0 3px 15px rgba(126, 118, 249, 0.702);
+    border: none;
+    margin: 12px;
+}
+
+#itemImageRemove {
+    background-color: #ffffff;
+    height: 35px;
+    width: 83px;
+    border-radius: 20px;
+    box-shadow: 0 3px 15px rgba(126, 118, 249, 0.702);
+    border: none;
+    padding: 0 16px 0 16px;
+    font-weight: bold;
+}
+
+
