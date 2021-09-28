@@ -122,7 +122,7 @@
                         </form>
                     </div>
                     <div class="col-12">
-                        <form id="categoryForm" method="" action="${pageContext.request.contextPath}/category">
+                        <form id="categoryForm" method="" action="">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
@@ -138,8 +138,9 @@
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
                                 <button type="button" class="btn btn-primary" id="btnCreate">Create</button>
-                                <button class="btn btn-warning text-white">update</button>
-                                <button class="btn btn-danger">Cancel</button>
+                                <button type="button" class="btn btn-warning text-white" id="btnUpdateCategory">update
+                                </button>
+                                <button type="submit" class="btn btn-danger">Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -150,7 +151,7 @@
             <%--            On GOing Category table div--%>
             <div class="row ml-md-2 mt-3">
                 <h4 class="mt-3 mb-4">Ongoing Category</h4>
-                <table class="table table-responsive">
+                <table class="table col-12">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -239,7 +240,7 @@
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
                                 <button class="btn btn-primary">Create</button>
-                                <button class="btn btn-warning text-white">update</button>
+                                <button type="button" class="btn btn-warning text-white">update</button>
                                 <button class="btn btn-danger">Cancel</button>
                             </div>
                         </form>
@@ -251,7 +252,7 @@
             <%--On Going Sub Category table div--%>
             <div class="row ml-md-2 mt-3">
                 <h4 class="mt-3 mb-4">Ongoing Sub Category</h4>
-                <table class="table table-responsive">
+                <table class="table col-12">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>

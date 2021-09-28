@@ -64,6 +64,7 @@ $('#btnCreate').click(function () {
             icon: "success",
         });
         getAllCategory();
+        clearTextFields();
     }).fail(function (xhr) {
         console.log(xhr);
         swal("Something Wrong Please try again", {
@@ -108,10 +109,13 @@ function deleteCategory() {
                             icon: "success",
                         });
                         getAllCategory();
+                        clearTextFields();
                     } else {
                         swal("Something Wrong Please try again", {
                             icon: "error",
                         });
+                        getAllCategory();
+                        clearTextFields();
                     }
                     // getAllCategory();
                 }).fail(function (xhr) {
@@ -139,4 +143,56 @@ function editCategory() {
         $('#categoryId').val(categoryID);
         $('#categoryInput').val(categoryName);
     });
+}
+
+// update category function
+$('#btnUpdateCategory').click(function () {
+
+    const categoryID = $("#categoryId").val();
+    const categoryName = $("#categoryInput").val();
+
+    $.ajax({
+        url: "http://localhost:8080/Online-Biding-System/category",
+        method: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify({
+            categoryID: categoryID,
+            categoryName: categoryName,
+        })
+    }).done(function (resp) {
+        if (resp === 'false') {
+            if (categoryID === '') {
+                console.log("please click edit button before delete");
+                swal("please click edit button before delete", {
+                    icon: "error",
+                });
+                swal("Category is Not Updated", {
+                    icon: "success",
+                });
+            }
+        } else if (resp === 'true') {
+            console.log(resp);
+            swal("Category is Updated", {
+                icon: "success",
+            });
+            getAllCategory();
+            clearTextFields();
+        } else {
+            swal("Something Wrong Please try again", {
+                icon: "error",
+            });
+            getAllCategory();
+            clearTextFields();
+        }
+        // getAllCategory();
+    }).fail(function (xhr) {
+        swal("Something Wrong Please try again", {
+            icon: "error",
+        });
+    });
+});
+
+function clearTextFields() {
+    const categoryID = $("#categoryId").val('');
+    const categoryName = $("#categoryInput").val('');
 }

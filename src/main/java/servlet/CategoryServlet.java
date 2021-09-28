@@ -32,9 +32,9 @@ public class CategoryServlet extends HttpServlet {
             Connection connection = DBConnection.getInstance().getConnection();
             switch (buttonType) {
                 case "Search":
-                    String subCategoryID = request.getParameter("categoryId");
+                    String categoryId = request.getParameter("categoryId");
                     PreparedStatement pst = connection.prepareStatement("SELECT * FROM category WHERE category_ID=?");
-                    pst.setObject(1, subCategoryID);
+                    pst.setObject(1, categoryId);
                     ResultSet rst = pst.executeQuery();
                     JsonArrayBuilder categoryArray = Json.createArrayBuilder();
                     while (rst.next()) {
@@ -92,7 +92,7 @@ public class CategoryServlet extends HttpServlet {
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            String sql = "INSERT INTO Category(name) VALUES('" + categoryName + "')";
+            String sql = "INSERT INTO Category(categoryName) VALUES('" + categoryName + "')";
             PreparedStatement pstm = connection.prepareStatement(sql);
             int i = pstm.executeUpdate();
             if (i > 0) {
@@ -111,7 +111,20 @@ public class CategoryServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+        JsonReader reader = Json.createReader(req.getInputStream());
+        JsonObject jsonObject = reader.readObject();
+        int categoryID = Integer.parseInt(jsonObject.getString("categoryID"));
+        String categoryName = jsonObject.getString("categoryName");
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement pst = connection.prepareStatement("Update category set category_ID = ? ,categoryName=? WHERE category_ID=?");
+            pst.setObject(1, categoryID);
+            pst.setObject(2, categoryName);
+            pst.setObject(3, categoryID);
+            resp.getWriter().print((pst.executeUpdate() > 0));
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
