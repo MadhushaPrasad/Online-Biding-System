@@ -215,11 +215,11 @@
                         </form>
                     </div>
                     <div class="col-12">
-                        <form method="post" action="/Online-Biding-System/subCategory">
+                        <form id="subCategoryForm" method="" action="">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
-                                        <select class="custom-select" id="department">
+                                        <select class="custom-select" id="categoryIDList" name="categoryID">
                                             <option selected>Category</option>
                                             <option value="1">Laptop</option>
                                             <option value="2">Mobile Phone</option>
@@ -239,7 +239,7 @@
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
-                                <button class="btn btn-primary">Create</button>
+                                <button type="button" class="btn btn-primary" id="btnAddSub">Create</button>
                                 <button type="button" class="btn btn-warning text-white">update</button>
                                 <button class="btn btn-danger">Cancel</button>
                             </div>
@@ -290,6 +290,6 @@
 </div>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/index.js"></script>
-<script src="../../assets/js/admin/category.js"></script>
+<script src="../../assets/js/admin/subCategory.js"></script>
 </body>
 </html>
