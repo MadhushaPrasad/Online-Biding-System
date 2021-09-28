@@ -19,16 +19,16 @@ CREATE TABLE Users
 
 CREATE TABLE Category
 (
-    category_ID int          NOT NULL AUTO_INCREMENT,
-    name        VARCHAR(150) NOT NULL,
+    category_ID  int          NOT NULL AUTO_INCREMENT,
+    categoryName VARCHAR(150) NOT NULL,
     CONSTRAINT PRIMARY KEY (category_ID)
 );
 
 CREATE TABLE Sub_Category
 (
-    subCategory_ID int          NOT NULL AUTO_INCREMENT,
-    category_ID    int          NOT NULL,
-    name           VARCHAR(150) NOT NULL,
+    subCategory_ID  int          NOT NULL AUTO_INCREMENT,
+    category_ID     int          NOT NULL,
+    subCategoryName VARCHAR(150) NOT NULL,
     CONSTRAINT PRIMARY KEY (subCategory_ID),
     CONSTRAINT FOREIGN KEY (category_ID) REFERENCES Category (category_ID)
         On UPDATE CASCADE On DELETE CASCADE
