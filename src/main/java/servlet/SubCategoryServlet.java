@@ -1,20 +1,19 @@
 package servlet;
 
-import model.Category;
 import model.SubCategory;
 import service.SubCategoryService;
 import serviceImpl.SubCategoryServiceImpl;
-import util.DBConnection;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -28,21 +27,26 @@ public class SubCategoryServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement pstm = connection.prepareStatement("SELECT * FROM Sub_Category");
-            ResultSet rst = pstm.executeQuery();
-            ArrayList<Category> allCategory = new ArrayList<>();
-            while (rst.next()) {
-                Category category = new Category();
-                category.setCategory_ID(rst.getInt(1));
-                category.setName((rst.getString(2)));
-                allCategory.add(category);
-                System.out.println(rst.getInt(1));
-                System.out.println(rst.getString(2));
+            SubCategoryService subCategoryService = new SubCategoryServiceImpl();
+            ArrayList<SubCategory> allSubCategory = subCategoryService.getAllSubCategory();
+            JsonArrayBuilder allSubCategoryJson = Json.createArrayBuilder();
+
+            for (SubCategory subCategory : allSubCategory) {
+
+                JsonObjectBuilder subCategoryJson = Json.createObjectBuilder();
+                int subCategoryID = subCategory.getSubCategory_ID();
+                int categoryID = subCategory.getCategory_ID();
+                String subCategoryName = subCategory.getSubCategoryName();
+                subCategoryJson.add("subCategoryID", subCategoryID);
+                subCategoryJson.add("categoryID", categoryID);
+                subCategoryJson.add("subCategoryName", subCategoryName);
+                allSubCategoryJson.add(subCategoryJson.build());
+
             }
-            System.out.println(allCategory);
+            PrintWriter writer = response.getWriter();
+            writer.print(allSubCategoryJson.build());
+
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -55,7 +59,6 @@ public class SubCategoryServlet extends HttpServlet {
         try {
             int subCategoryID = Integer.parseInt(request.getParameter("categoryID"));
             String subCategoryName = request.getParameter("subCategoryName");
-            System.out.println("servlet Sub " + subCategoryName);
             SubCategory subCategory = new SubCategory();
             subCategory.setCategory_ID(subCategoryID);
             subCategory.setSubCategoryName(subCategoryName);
@@ -63,10 +66,10 @@ public class SubCategoryServlet extends HttpServlet {
             SubCategoryService subCategoryService = new SubCategoryServiceImpl();
             boolean addSubCategory = subCategoryService.addSubCategory(subCategory);
             if (addSubCategory) {
-                response.getWriter().print("Category Added");
+                response.getWriter().print("true");
                 System.out.println("Added");
             } else {
-                response.getWriter().print("Error");
+                response.getWriter().print("false");
                 System.out.println("Error");
             }
         } catch (ClassNotFoundException | SQLException e) {

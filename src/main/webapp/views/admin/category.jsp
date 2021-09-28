@@ -260,7 +260,7 @@
                         <th scope="col">Sub Category Name</th>
                     </tr>
                     </thead>
-                    <tbody id="categoryBody"></tbody>
+                    <tbody id="subCategoryTableBody"></tbody>
                 </table>
                 <nav
                         aria-label="Page navigation example"
@@ -290,6 +290,7 @@
 </div>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/index.js"></script>
+<script src="../../assets/js/admin/category.js"></script>
 <script src="../../assets/js/admin/subCategory.js"></script>
 </body>
 </html>
