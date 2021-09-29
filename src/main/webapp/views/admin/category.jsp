@@ -113,7 +113,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <button type="button" id="subCatSearch" name="searchCategoryButton"
+                                    <button type="button" id="btnCategorySearch" name="searchCategoryButton"
                                             class="btn btn-warning text-white"
                                             value="Search">Search
                                     </button>
@@ -195,7 +195,7 @@
                 <%--Sub Category form div--%>
                 <div class="row mt-3">
                     <div class="col-12">
-                        <form method="post" action="">
+                        <form method="" action="">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">
@@ -209,7 +209,9 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <button class="btn btn-warning text-white">Search</button>
+                                    <button type="button" class="btn btn-warning text-white" id="btnSubCatSearch">
+                                        Search
+                                    </button>
                                 </div>
                             </div>
                         </form>

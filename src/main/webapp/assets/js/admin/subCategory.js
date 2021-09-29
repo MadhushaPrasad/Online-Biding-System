@@ -20,8 +20,8 @@ function getAllSubCategory() {
         for (const subCategory of res) {
             const row = "<tr><td>" + subCategory.subCategoryID + "</td><td>" + subCategory.categoryID +
                 "</td><td>" + subCategory.subCategoryName + "</td>" +
-                "<td><i style='cursor: pointer' class='fas fa-edit btnEdit text-warning' onclick='editSubCategory()'></i></td>" +
-                "<td><i style='cursor: pointer' class='fas fa-trash-alt btnDelte text-danger' onclick='deleteSubCategory()'></i></td></tr>";
+                "<td><i style='cursor: pointer' class='fas fa-edit btnSubCatEdit text-warning' onclick='editSubCategory()'></i></td>" +
+                "<td><i style='cursor: pointer' class='fas fa-trash-alt btnSubCatDelte text-danger' onclick='deleteSubCategory()'></i></td></tr>";
             $("#subCategoryTableBody").append(row);
         }
     }).fail(function (xhr) {
@@ -74,7 +74,8 @@ $('#btnAddSub').click(function () {
 //clear text fields
 function clearSubCategoryTextFields() {
     $('#categoryIDList').prop('selectedIndex', 0);
-    const categoryName = $("#subCategoryNameField").val('');
+    $("#subCategoryNameField").val('');
+    $("#subCategoryIdFeild").val('');
 }
 
 // edit subCategory function
@@ -102,13 +103,12 @@ function deleteSubCategory() {
         .then((willDelete) => {
             if (willDelete) {
                 let subCategoryID = $('#subCategoryIdFeild').val();
-
                 $.ajax({
                     url: "http://localhost:8080/Online-Biding-System/subCategory",
                     method: "DELETE",
                     contentType: "application/json",
                     data: JSON.stringify({
-                        subCategoryId: subCategoryID
+                        subCategory: subCategoryID
                     })
                 }).done(function (resp) {
                     if (resp === 'false') {
@@ -125,7 +125,7 @@ function deleteSubCategory() {
                             icon: "success",
                         });
                         getAllSubCategory();
-                        clearTextFields();
+                        clearSubCategoryTextFields();
                         getAllCategoryNames();
                     } else {
                         swal("Something Wrong Please try again", {
@@ -133,7 +133,7 @@ function deleteSubCategory() {
                         });
                         console.log(resp);
                         getAllSubCategory();
-                        clearTextFields();
+                        clearSubCategoryTextFields();
                         getAllCategoryNames();
                     }
                     // getAllCategory();
@@ -197,5 +197,28 @@ $('#btnSubCategoryUpdate').click(function () {
         swal("Something Wrong Please try again", {
             icon: "error",
         });
+    });
+});
+
+//search category function
+$('#btnSubCatSearch').click(function () {
+    const subCategoryID = $("#subCategoryIdFeild").val();
+    $("#subCategoryTableBody").empty();
+    $.ajax({
+        url: "http://localhost:8080/Online-Biding-System/subCategory",
+        method: "GET",
+        data: {
+            subCategoryId: subCategoryID,
+            option: "Search"
+        },
+        dataType: "json"
+    }).done(function (res) {
+        const row = "<tr><td>" + res.subCategoryID + "</td><td>" + res.categoryID +
+            "</td><td>" + res.subCategoryName + "</td>" +
+            "<td><i style='cursor: pointer' class='fas fa-edit btnSubCatEdit text-warning' onclick='editSubCategory()'></i></td>" +
+            "<td><i style='cursor: pointer' class='fas fa-trash-alt btnSubCatDelte text-danger' onclick='deleteSubCategory()'></i></td></tr>";
+        $("#subCategoryTableBody").append(row);
+    }).fail(function (xhr) {
+        console.log(xhr);
     });
 });
