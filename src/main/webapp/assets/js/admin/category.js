@@ -3,8 +3,9 @@ $(document).ready(function () {
 });
 
 // search category by id Function
-$("#subCatSearch").on('click', function () {
+$("#btnCategorySearch").on('click', function () {
     const categoryID = $('#categoryId').val();
+    console.log(categoryID)
     $("#categoryTableBody").empty();
     $.ajax({
         url: "http://localhost:8080/Online-Biding-System/category",
@@ -15,12 +16,10 @@ $("#subCatSearch").on('click', function () {
         },
         dataType: "json"
     }).done(function (res) {
-        for (const category of res) {
-            const row = "<tr><td>" + category.id + "</td><td>" + category.name + "</td>" +
-                "<td><i style='cursor: pointer' class='fas fa-edit btnEdit text-warning' onclick='editCategory()'></i></td>" +
-                "<td><i style='cursor: pointer' class='fas fa-trash-alt btnDelte text-danger' onclick='deleteCategory()'></i></td></tr>";
+        const row = "<tr><td>" + res.id + "</td><td>" + res.name + "</td>" +
+            "<td><i style='cursor: pointer' class='fas fa-edit btnEdit text-warning' onclick='editCategory()'></i></td>" +
+            "<td><i style='cursor: pointer' class='fas fa-trash-alt btnDelte text-danger' onclick='deleteCategory()'></i></td></tr>";
             $("#categoryTableBody").append(row);
-        }
     }).fail(function (xhr) {
         console.log(xhr);
     });

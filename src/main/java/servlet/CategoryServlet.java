@@ -1,5 +1,8 @@
 package servlet;
 
+import model.Category;
+import service.custom.CategoryService;
+import service.custom.Impl.CategoryServiceImpl;
 import util.DBConnection;
 
 import javax.json.*;
@@ -11,9 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet("/category")
 public class CategoryServlet extends HttpServlet {
@@ -33,44 +35,32 @@ public class CategoryServlet extends HttpServlet {
             switch (buttonType) {
                 case "Search":
                     String categoryId = request.getParameter("categoryId");
-                    PreparedStatement pst = connection.prepareStatement("SELECT * FROM category WHERE category_ID=?");
-                    pst.setObject(1, categoryId);
-                    ResultSet rst = pst.executeQuery();
-                    JsonArrayBuilder categoryArray = Json.createArrayBuilder();
-                    while (rst.next()) {
-                        JsonObjectBuilder category = Json.createObjectBuilder();
-                        int id = rst.getInt(1);
-                        String name = rst.getString(2);
-                        category.add("id", id);
-                        category.add("name", name);
-                        categoryArray.add(category.build());
-                    }
-
-                    PrintWriter writer = response.getWriter();
-                    writer.print(categoryArray.build());
+                    int id = Integer.parseInt(categoryId);
+                    CategoryService categoryService = new CategoryServiceImpl();
+                    Category search = categoryService.search(id);
+                    JsonObjectBuilder subCategoryJson1 = Json.createObjectBuilder();
+                    subCategoryJson1.add("id", search.getCategory_ID());
+                    subCategoryJson1.add("name", search.getCategoryName());
+                    response.getWriter().print(subCategoryJson1.build());
                     break;
                 case "GetAll":
-                    PreparedStatement pstm = connection.prepareStatement("SELECT * FROM Category");
-                    ResultSet rst1 = pstm.executeQuery();
-                    JsonArrayBuilder categoryArray2 = Json.createArrayBuilder();
-//                    ArrayList<Category> allCategory = new ArrayList<>();
-                    while (rst1.next()) {
-//                        Category category = new Category();
-//                        category.setCategory_ID(rst.getInt(1));
-//                        category.setName((rst.getString(2)));
-//                        allCategory.add(category);
-//                        System.out.println(rst.getInt(1));
-//                        System.out.println(rst.getString(2));
+                    CategoryService categoryService2 = new CategoryServiceImpl();
+                    ArrayList<Category> allCategory = categoryService2.getAll();
+                    JsonArrayBuilder allCategoryJson = Json.createArrayBuilder();
 
-                        JsonObjectBuilder category = Json.createObjectBuilder();
-                        int id = rst1.getInt(1);
-                        String name = rst1.getString(2);
-                        category.add("id", id);
-                        category.add("name", name);
-                        categoryArray2.add(category.build());
+                    for (Category category : allCategory) {
+
+                        JsonObjectBuilder categoryJson = Json.createObjectBuilder();
+                        int categoryID = category.getCategory_ID();
+                        String categoryName = category.getCategoryName();
+                        categoryJson.add("id", categoryID);
+                        categoryJson.add("name", categoryName);
+
+                        allCategoryJson.add(categoryJson.build());
+
                     }
-                    PrintWriter writer2 = response.getWriter();
-                    writer2.print(categoryArray2.build());
+                    PrintWriter writer1 = response.getWriter();
+                    writer1.print(allCategoryJson.build());
                     break;
                 default:
                     break;
@@ -88,24 +78,20 @@ public class CategoryServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String categoryName = request.getParameter("categoryNameInput");
 
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            String sql = "INSERT INTO Category(categoryName) VALUES('" + categoryName + "')";
-            PreparedStatement pstm = connection.prepareStatement(sql);
-            int i = pstm.executeUpdate();
-            if (i > 0) {
-                response.getWriter().print("Category Added");
-                System.out.println("Added");
-            } else {
-                response.getWriter().print("Error");
-                System.out.println("Error");
-            }
+            String categoryName = request.getParameter("categoryNameInput");
+            Category category = new Category();
+            category.setCategoryName(categoryName);
+            CategoryService categoryService = new CategoryServiceImpl();
+
+            boolean add = categoryService.add(category);
+            response.getWriter().print(add);
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+
 
     }
 
@@ -116,12 +102,12 @@ public class CategoryServlet extends HttpServlet {
         int categoryID = Integer.parseInt(jsonObject.getString("categoryID"));
         String categoryName = jsonObject.getString("categoryName");
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement pst = connection.prepareStatement("Update category set category_ID = ? ,categoryName=? WHERE category_ID=?");
-            pst.setObject(1, categoryID);
-            pst.setObject(2, categoryName);
-            pst.setObject(3, categoryID);
-            resp.getWriter().print((pst.executeUpdate() > 0));
+            CategoryService categoryService = new CategoryServiceImpl();
+            Category category = new Category();
+            category.setCategory_ID(categoryID);
+            category.setCategoryName(categoryName);
+            boolean update = categoryService.update(category);
+            resp.getWriter().print(update);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -132,13 +118,11 @@ public class CategoryServlet extends HttpServlet {
         JsonReader reader = Json.createReader(req.getInputStream());
         JsonObject jsonObject = reader.readObject();
         String categoryID = jsonObject.getString("categoryId");
-        System.out.println(categoryID);
-
+        int id = Integer.parseInt(categoryID);
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement pst = connection.prepareStatement("DELETE FROM Category WHERE category_ID=?");
-            pst.setObject(1, categoryID);
-            resp.getWriter().print(pst.executeUpdate() > 0);
+            CategoryService categoryService = new CategoryServiceImpl();
+            boolean delete = categoryService.delete(id);
+            resp.getWriter().print(delete);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
