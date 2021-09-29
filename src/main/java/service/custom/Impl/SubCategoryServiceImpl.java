@@ -46,7 +46,17 @@ public class SubCategoryServiceImpl implements SubCategoryService {
     }
 
     public SubCategory search(Integer id) throws ClassNotFoundException, SQLException {
-        return null;
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pst = connection.prepareStatement("SELECT * FROM sub_category WHERE subCategory_ID=?");
+        pst.setObject(1, id);
+        ResultSet rst = pst.executeQuery();
+        SubCategory subCategory = new SubCategory();
+        while (rst.next()) {
+            subCategory.setSubCategory_ID(rst.getInt(1));
+            subCategory.setCategory_ID(rst.getInt(2));
+            subCategory.setSubCategoryName(rst.getString(3));
+        }
+        return subCategory;
     }
 
     @Override

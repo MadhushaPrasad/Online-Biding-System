@@ -1,20 +1,11 @@
 package service.custom;
 
 import model.Category;
+import service.CrudService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface CategoryService {
-    boolean addCategory(Category c) throws ClassNotFoundException, SQLException;
-
-    boolean updateCategory(Category c) throws ClassNotFoundException, SQLException;
-
-    boolean deleteCategory(int id) throws ClassNotFoundException, SQLException;
-
-    Category searchCategory(int id) throws ClassNotFoundException, SQLException;
-
-    ArrayList<Category> getAllCategory() throws ClassNotFoundException, SQLException;
-
+public interface CategoryService extends CrudService<Category, Integer> {
     ArrayList<Category> getCatageryNameList() throws ClassNotFoundException, SQLException;
 }

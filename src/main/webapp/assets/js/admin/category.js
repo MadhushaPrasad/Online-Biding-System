@@ -5,7 +5,6 @@ $(document).ready(function () {
 // search category by id Function
 $("#subCatSearch").on('click', function () {
     const categoryID = $('#categoryId').val();
-    const typesValue = $("#subCatSearch").val();
     $("#categoryTableBody").empty();
     $.ajax({
         url: "http://localhost:8080/Online-Biding-System/category",
@@ -197,6 +196,6 @@ $('#btnUpdateCategory').click(function () {
 
 //clear text fields
 function clearTextFields() {
-    const categoryID = $("#categoryId").val('');
-    const categoryName = $("#categoryInput").val('');
+    $("#categoryId").val('');
+    $("#categoryInput").val('');
 }

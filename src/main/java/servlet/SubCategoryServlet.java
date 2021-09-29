@@ -7,9 +7,7 @@ import service.custom.Impl.CategoryServiceImpl;
 import service.custom.Impl.SubCategoryServiceImpl;
 import service.custom.SubCategoryService;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObjectBuilder;
+import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +34,15 @@ public class SubCategoryServlet extends HttpServlet {
 
             switch (buttonType) {
                 case "Search":
-
+                    String subcategoryID = request.getParameter("subCategoryId");
+                    int id = Integer.parseInt(subcategoryID);
+                    SubCategoryService subCategoryService1 = new SubCategoryServiceImpl();
+                    SubCategory search = subCategoryService1.search(id);
+                    JsonObjectBuilder subCategoryJson1 = Json.createObjectBuilder();
+                    subCategoryJson1.add("subCategoryID", search.getSubCategory_ID());
+                    subCategoryJson1.add("categoryID", search.getCategory_ID());
+                    subCategoryJson1.add("subCategoryName", search.getSubCategoryName());
+                    response.getWriter().print(subCategoryJson1.build());
                     break;
                 case "GetAll":
                     SubCategoryService subCategoryService = new SubCategoryServiceImpl();
@@ -112,17 +118,22 @@ public class SubCategoryServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        JsonReader reader = Json.createReader(req.getInputStream());
+        JsonObject jsonObject = reader.readObject();
+        String subCategoryID = jsonObject.getString("subCategoryID");
+        String categoryID = jsonObject.getString("categoryID");
+        String subCategoryName = jsonObject.getString("subCategoryName");
+        int id = Integer.parseInt(subCategoryID);
+        int categoryId = Integer.parseInt(categoryID);
+
         try {
-            int subCategoryID = Integer.parseInt(req.getParameter("subCategoryID"));
-            int categoryID = Integer.parseInt(req.getParameter("categoryID"));
-            String subCategoryName = req.getParameter("subCategoryName");
 
             System.out.println(subCategoryID);
             System.out.println(categoryID);
             SubCategoryService subCategoryService = new SubCategoryServiceImpl();
             SubCategory subCategory = new SubCategory();
-            subCategory.setSubCategory_ID(subCategoryID);
-            subCategory.setCategory_ID(categoryID);
+            subCategory.setSubCategory_ID(id);
+            subCategory.setCategory_ID(categoryId);
             subCategory.setSubCategoryName(subCategoryName);
             boolean updateSubCategory = subCategoryService.update(subCategory);
             if (updateSubCategory) {
@@ -139,10 +150,14 @@ public class SubCategoryServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        JsonReader reader = Json.createReader(req.getInputStream());
+        JsonObject jsonObject = reader.readObject();
+        String subCategoryID = jsonObject.getString("subCategory");
+        int id = Integer.parseInt(subCategoryID);
         try {
-            int subCategoryID = Integer.parseInt(req.getParameter("subCategoryId"));
             SubCategoryService subCategoryService = new SubCategoryServiceImpl();
-            boolean deleteSubCategory = subCategoryService.delete(subCategoryID);
+            System.out.println(subCategoryID);
+            boolean deleteSubCategory = subCategoryService.delete(id);
             if (deleteSubCategory) {
                 resp.getWriter().print(true);
                 System.out.println("Added");
