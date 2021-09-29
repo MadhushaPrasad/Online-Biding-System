@@ -65,6 +65,7 @@ $('#btnCreate').click(function () {
         });
         getAllCategory();
         clearTextFields();
+        getAllCategoryNames();
     }).fail(function (xhr) {
         console.log(xhr);
         swal("Something Wrong Please try again", {
@@ -110,12 +111,14 @@ function deleteCategory() {
                         });
                         getAllCategory();
                         clearTextFields();
+                        getAllCategoryNames();
                     } else {
                         swal("Something Wrong Please try again", {
                             icon: "error",
                         });
                         getAllCategory();
                         clearTextFields();
+                        getAllCategoryNames();
                     }
                     // getAllCategory();
                 }).fail(function (xhr) {
@@ -129,8 +132,6 @@ function deleteCategory() {
                 swal("Your imaginary file is safe!");
             }
         });
-
-
 }
 
 
@@ -167,7 +168,7 @@ $('#btnUpdateCategory').click(function () {
                     icon: "error",
                 });
                 swal("Category is Not Updated", {
-                    icon: "success",
+                    icon: "error",
                 });
             }
         } else if (resp === 'true') {
@@ -177,12 +178,14 @@ $('#btnUpdateCategory').click(function () {
             });
             getAllCategory();
             clearTextFields();
+            getAllCategoryNames();
         } else {
             swal("Something Wrong Please try again", {
                 icon: "error",
             });
             getAllCategory();
             clearTextFields();
+            getAllCategoryNames();
         }
         // getAllCategory();
     }).fail(function (xhr) {
@@ -192,6 +195,7 @@ $('#btnUpdateCategory').click(function () {
     });
 });
 
+//clear text fields
 function clearTextFields() {
     const categoryID = $("#categoryId").val('');
     const categoryName = $("#categoryInput").val('');

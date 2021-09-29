@@ -1,14 +1,14 @@
-package serviceImpl;
+package service.custom.Impl;
+
+import model.Category;
+import service.custom.CategoryService;
+import util.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import model.Category;
-import service.CategoryService;
-import util.DBConnection;
 
 public class CategoryServiceImpl implements CategoryService {
 
@@ -46,10 +46,27 @@ public class CategoryServiceImpl implements CategoryService {
 		while (rst.next()) {
 			Category category = new Category();
 			category.setCategory_ID(rst.getInt(1));
-			category.setName((rst.getString(2)));
+			category.setCategoryName((rst.getString(2)));
 			allCategory.add(category);
 		}
 		return allCategory;
+	}
+
+	@Override
+	public ArrayList<Category> getCatageryNameList() throws ClassNotFoundException, SQLException {
+		Connection connection = DBConnection.getInstance().getConnection();
+		PreparedStatement pst = connection.prepareStatement("SELECT category_ID,categoryName FROM category");
+		ResultSet rst = pst.executeQuery();
+
+		ArrayList<Category> categoryList = new ArrayList<>();
+		while (rst.next()) {
+			Category category = new Category();
+			category.setCategory_ID(rst.getInt(1));
+			category.setCategoryName(rst.getString(2));
+
+			categoryList.add(category);
+		}
+		return categoryList;
 	}
 
 }
