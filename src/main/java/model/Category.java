@@ -2,16 +2,16 @@ package model;
 
 public class Category {
 	private int category_ID;
-	private String name;
-	
+	private String categoryName;
+
 	public Category() {
-		
+
 	}
 
-	public Category(int category_ID, String name) {
+	public Category(int category_ID, String categoryName) {
 		super();
 		this.category_ID = category_ID;
-		this.name = name;
+		this.categoryName = categoryName;
 	}
 
 	public int getCategory_ID() {
@@ -22,13 +22,13 @@ public class Category {
 		this.category_ID = category_ID;
 	}
 
-	public String getName() {
-		return name;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
-	
-	
+
+
 }

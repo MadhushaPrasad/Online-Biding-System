@@ -13,8 +13,8 @@ public class SubCategory {
 		this.category_ID = category_ID;
 		this.subCategoryName = name;
 	}
-	
-	public int getSubCategory_ID() {
+
+    public int getSubCategory_ID() {
 		return subCategory_ID;
 	}
 
@@ -37,5 +37,4 @@ public class SubCategory {
 	public void setSubCategoryName(String subCategoryName) {
 		this.subCategoryName = subCategoryName;
 	}
-
 }

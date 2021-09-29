@@ -220,9 +220,7 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
                                         <select class="custom-select" id="categoryIDList" name="categoryID">
-                                            <option selected>Category</option>
-                                            <option value="1">Laptop</option>
-                                            <option value="2">Mobile Phone</option>
+                                            <option id="selected" selected>Select A Category</option>
                                         </select>
                                     </div>
                                 </div>
@@ -230,7 +228,7 @@
                                     <div class="input-group mb-3">
                                         <input
                                                 type="text"
-                                                id="subCategoryNameFeild"
+                                                id="subCategoryNameField"
                                                 class="form-control"
                                                 placeholder="Sub Category Name"
                                                 name="subCategoryName"
@@ -240,8 +238,10 @@
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
                                 <button type="button" class="btn btn-primary" id="btnAddSub">Create</button>
-                                <button type="button" class="btn btn-warning text-white">update</button>
-                                <button class="btn btn-danger">Cancel</button>
+                                <button type="button" class="btn btn-warning text-white" id="btnSubCategoryUpdate">
+                                    update
+                                </button>
+                                <button type="submit" class="btn btn-danger">Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -260,7 +260,9 @@
                         <th scope="col">Sub Category Name</th>
                     </tr>
                     </thead>
-                    <tbody id="subCategoryTableBody"></tbody>
+                    <tbody id="subCategoryTableBody">
+
+                    </tbody>
                 </table>
                 <nav
                         aria-label="Page navigation example"
