@@ -54,14 +54,15 @@
                     icon: "success",
                 });
                 <% session1.setAttribute("message",""); %>
-                window.location = "http://localhost:8080/Online-Biding-System/bid";
+                
             } else if (mes === 'false' && 'update') {
                 swal("Bid is not Updated", {
                     icon: "error",
                 });
                 <% session1.setAttribute("message",""); %>
-                window.location = "http://localhost:8080/Online-Biding-System/bid";
+                
             }
+            
         }
 
         function displayAlertAdd(mes, btnType) {
@@ -70,14 +71,15 @@
                     icon: "success",
                 });
                 <% session1.setAttribute("message",""); %>
-                window.location = "http://localhost:8080/Online-Biding-System/bid";
+                
             } else if (mes === 'false' && 'add') {
                 swal("Bid is not Added", {
                     icon: "error",
                 });
                 <% session1.setAttribute("message",""); %>
-                window.location = "http://localhost:8080/Online-Biding-System/bid";
+                
             }
+            
         }
 
         function displayAlertdelete(mes, btnType) {
@@ -86,14 +88,15 @@
                     icon: "success",
                 });
                 <% session1.setAttribute("message",""); %>
-                window.location = "http://localhost:8080/Online-Biding-System/bid";
+               
             } else if (mes === 'false' && 'add') {
                 swal("Bid is not Deleted", {
                     icon: "error",
                 });
                 <% session1.setAttribute("message",""); %>
-                window.location = "http://localhost:8080/Online-Biding-System/bid";
+                
             }
+            
         }
     </script>
     <div class="top_navbar">
@@ -162,7 +165,6 @@
         <div class="item">
             <div class="item">
                 <h4 class="title font-weight-bold">Bid</h4>
-                <h1><%= message  %>
                 </h1>
             </div>
 
@@ -191,6 +193,9 @@
                                     </button>
                                     <button type="submit" class="btn btn-danger" name="option"
                                             value="delete">Delete
+                                    </button>
+                                    <button type="submit" class="btn btn-success" name="option"
+                                            value="getAll">Reload Table
                                     </button>
                                 </div>
                             </div>
@@ -224,7 +229,7 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
                                         <select class="custom-select" id="itemId" name="itemId">
-                                            <option selected>Item Name</option>
+                                            <option selected disabled>Item Name</option>
                                             <option value="1">Laptop</option>
                                             <option value="2">Mobile Phone</option>
                                         </select>
