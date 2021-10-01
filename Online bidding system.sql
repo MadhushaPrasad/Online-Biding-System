@@ -17,6 +17,16 @@ CREATE TABLE Users
     CONSTRAINT PRIMARY KEY (userID)
 );
 
+INSERT INTO Users(userName, f_Name, l_Name, email, telephone, address, password, img, type)
+VALUES ('Madhush99', 'Madhusha', 'Prasad', 'madushaprasad21@gmail.com', '0716035826', 'Kalutara', '1234', 'profile.jpg',
+        'Bidder');
+INSERT INTO Users(userName, f_Name, l_Name, email, telephone, address, password, img, type)
+VALUES ('Madhush99', 'Madhusha', 'Prasad', 'madushaprasad21@gmail.com', '0716035826', 'Kalutara', '1234', 'profile.jpg',
+        'Seller');
+INSERT INTO Users(userName, f_Name, l_Name, email, telephone, address, password, img, type)
+VALUES ('Madhush99', 'Madhusha', 'Prasad', 'madushaprasad21@gmail.com', '0716035826', 'Kalutara', '1234', 'profile.jpg',
+        'Admin');
+
 CREATE TABLE Category
 (
     category_ID  int          NOT NULL AUTO_INCREMENT,
@@ -50,6 +60,9 @@ CREATE TABLE Item
     CONSTRAINT FOREIGN KEY (userID) REFERENCES Users (userID)
         On UPDATE CASCADE On DELETE CASCADE
 );
+
+INSERT INTO Item(category_ID, userID, name, description, price, image, status)
+VALUES (1, 2, 'Samsung Laptop', 'hsdghsdgdj', 150000, 'item.png', 'pending');
 
 CREATE TABLE Item_payment
 (
@@ -87,6 +100,17 @@ CREATE TABLE Bid
     CONSTRAINT FOREIGN KEY (itemID) REFERENCES Item (itemID)
         On UPDATE CASCADE On DELETE CASCADE
 );
+INSERT INTO Bid(userID, itemID, amount, bid_time, bid_date, status)
+VALUES (1, 2, 5000, urrent_time() c, current_time, 'running');
+UPDATE Bid
+set bid_ID=?,
+    userID=?,
+    itemID=?,
+    amount=?,
+    bid_date = urrent_time(),
+    bid_time=urrent_time(),
+    status='running'
+WHERE bid_ID = ?;
 
 CREATE TABLE Payment
 (
