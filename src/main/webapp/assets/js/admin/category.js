@@ -19,7 +19,7 @@ $("#btnCategorySearch").on('click', function () {
         const row = "<tr><td>" + res.id + "</td><td>" + res.name + "</td>" +
             "<td><i style='cursor: pointer' class='fas fa-edit btnEdit text-warning' onclick='editCategory()'></i></td>" +
             "<td><i style='cursor: pointer' class='fas fa-trash-alt btnDelte text-danger' onclick='deleteCategory()'></i></td></tr>";
-            $("#categoryTableBody").append(row);
+        $("#categoryTableBody").append(row);
     }).fail(function (xhr) {
         console.log(xhr);
     });
