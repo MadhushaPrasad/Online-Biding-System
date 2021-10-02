@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Bid" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Madhusha Prasad
@@ -18,19 +21,84 @@
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
     <%--    custom css--%>
-    <link rel="stylesheet" href="../../assets/css/index.css"/>
-    <link rel="stylesheet" href="../../assets/css/admin/buttons.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/index.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/buttons.css"/>
 
     <%--    import Bootstrap css--%>
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"/>
 
     <%--    import sweet alert js--%>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
     <title>Admin || Bid</title>
 </head>
 <body>
 <div id="wrapper">
+    <%
+        HttpSession session1 = request.getSession();
+        String message = (String) session1.getAttribute("message");
+        String type = (String) session1.getAttribute("type");
+    %>
+    <script>
+        var message = "<%=message%>";
+        var funcType = "<%= type %>";
+
+        displayAlertUpdate(message, funcType);
+        displayAlertAdd(message, funcType);
+        displayAlertdelete(message, funcType);
+
+        function displayAlertUpdate(mes, btnType) {
+            if (mes === 'true' && btnType === 'update') {
+                swal("Bid is Updated", {
+                    icon: "success",
+                });
+                <% session1.setAttribute("message",""); %>
+                
+            } else if (mes === 'false' && 'update') {
+                swal("Bid is not Updated", {
+                    icon: "error",
+                });
+                <% session1.setAttribute("message",""); %>
+                
+            }
+            
+        }
+
+        function displayAlertAdd(mes, btnType) {
+            if (mes === 'true' && btnType === 'add') {
+                swal("Bid is Added", {
+                    icon: "success",
+                });
+                <% session1.setAttribute("message",""); %>
+                
+            } else if (mes === 'false' && 'add') {
+                swal("Bid is not Added", {
+                    icon: "error",
+                });
+                <% session1.setAttribute("message",""); %>
+                
+            }
+            
+        }
+
+        function displayAlertdelete(mes, btnType) {
+            if (mes === 'true' && btnType === 'delete') {
+                swal("Bid is Deleted", {
+                    icon: "success",
+                });
+                <% session1.setAttribute("message",""); %>
+               
+            } else if (mes === 'false' && 'add') {
+                swal("Bid is not Deleted", {
+                    icon: "error",
+                });
+                <% session1.setAttribute("message",""); %>
+                
+            }
+            
+        }
+    </script>
     <div class="top_navbar">
         <div id="hamburger">
             <div class="one"></div>
@@ -97,6 +165,7 @@
         <div class="item">
             <div class="item">
                 <h4 class="title font-weight-bold">Bid</h4>
+                </h1>
             </div>
 
             <div class="col-12">
@@ -104,7 +173,7 @@
                 <div class="row mt-3">
                     <div class="col-lg-12">
                         <%--search Bid--%>
-                        <form method="" action="${pageContext.request.contextPath}/#">
+                        <form method="get" action="${pageContext.request.contextPath}/bid">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">
@@ -118,21 +187,49 @@
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <button type="button" id="btnBidSearch" name="searchBidButton"
+                                    <button type="submit" id="btnBidSearch" name="option"
                                             class="btn btn-warning text-white"
-                                            value="Search">Search
+                                            value="search">Search
+                                    </button>
+                                    <button type="submit" class="btn btn-danger" name="option"
+                                            value="delete">Delete
+                                    </button>
+                                    <button type="submit" class="btn btn-success" name="option"
+                                            value="getAll">Reload Table
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="col-12">
-                        <form id="sellerForm" method="" action="${pageContext.request.contextPath}/#">
+                        <form id="sellerForm" method="post" action="${pageContext.request.contextPath}/bid">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
+                                    <div class="input-group mb-2">
+                                        <input
+                                                type="text"
+                                                id="pBidID"
+                                                class="form-control"
+                                                placeholder="Bid ID"
+                                                name="bidID"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="input-group mb-2">
+                                        <input
+                                                type="text"
+                                                id="pUserID"
+                                                class="form-control"
+                                                placeholder="User ID"
+                                                name="userID"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
-                                        <select class="custom-select" id="department" name="itemId">
-                                            <option selected>Item Name</option>
+                                        <select class="custom-select" id="itemId" name="itemId">
+                                            <option selected disabled>Item Name</option>
                                             <option value="1">Laptop</option>
                                             <option value="2">Mobile Phone</option>
                                         </select>
@@ -141,16 +238,21 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">LKR</span>
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control" id="amount" name="amount"
                                                aria-label="Amount (to the nearest dollar)">
-                                        <span class="input-group-text">.00</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
-                                <button type="button" class="btn btn-primary" id="btnCreate">Submit</button>
-                                <button class="btn btn-warning text-white btnUpdate">update</button>
-                                <button type="submit" class="btn btn-danger">Cancel</button>
+                                <button type="submit" class="btn btn-primary" id="btnCreate" name="option"
+                                        value="submit">Submit
+                                </button>
+                                <button type="submit" class="btn btn-warning text-white btnUpdate" name="option"
+                                        value="update">update
+                                </button>
+                                <button type="submit" class="btn btn-danger" name="option"
+                                        value="delete">Cancel
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -161,7 +263,7 @@
             <%--  Bid table div--%>
             <div class="row ml-md-2 mt-3">
                 <h4 class="mt-3 mb-4">Bid List</h4>
-                <table class="table table-responsive">
+                <table class="table col-12">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -171,10 +273,30 @@
                         <th scope="col">Bid Time</th>
                         <th scope="col">Bid Date</th>
                         <th scope="col">Status</th>
+                        <th scope="col"></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody id="bidTableBody">
+                    <c:forEach items="${bidDetails}" var="bids">
+                        <tr>
+                            <td>${bids.bid_ID}</td>
+                            <td>${bids.userID}</td>
+                            <td>${bids.itemID}</td>
+                            <td>${bids.amount}</td>
+                            <td>${bids.bid_date}</td>
+                            <td>${bids.bid_time}</td>
+                            <td>${bids.status}</td>
+                            <td>
+                                <i style='cursor: pointer' class='fas fa-edit btnEdit text-warning'
+                                   onclick="editBid()"></i></td>
+                            <td>
+                                <form action="delete">
+                                    <i style='cursor: pointer' class='fas fa-trash-alt btnDelte text-danger'></i>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <nav
@@ -203,8 +325,8 @@
         </div>
     </div>
 </div>
-<script src="../../assets/js/jquery.js"></script>
-<script src="../../assets/js/index.js"></script>
-<script src="../../assets/js/admin/bid.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/admin/bid.js"></script>
 </body>
 </html>
