@@ -19,6 +19,7 @@ CREATE TABLE Users
 );
 
 
+
 CREATE TABLE Category
 (
     category_ID  int          NOT NULL AUTO_INCREMENT,

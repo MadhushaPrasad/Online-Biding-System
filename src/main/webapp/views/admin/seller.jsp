@@ -126,7 +126,7 @@
                         </form>
                     </div>
                     <div class="col-12">
-                        <form id="sellerForm" method="" action="${pageContext.request.contextPath}/#">
+                        <form id="sellerForm" method="post" action="${pageContext.request.contextPath}/seller">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
-                                <button type="button" class="btn btn-primary" id="btnCreate">Create</button>
+                                <button type="submit" class="btn btn-primary" id="btnCreate">Create</button>
                                 <button class="btn btn-warning text-white btnUpdate">update</button>
                                 <button type="submit" class="btn btn-danger">Cancel</button>
                             </div>
