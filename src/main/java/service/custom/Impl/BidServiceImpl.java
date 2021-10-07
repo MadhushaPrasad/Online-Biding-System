@@ -69,7 +69,7 @@ public class BidServiceImpl implements BidService {
         PreparedStatement pst = connection.prepareStatement("SELECT * FROM bid");
         ResultSet rst = pst.executeQuery();
         ArrayList<Bid> bidList = new ArrayList<>();
-        while (rst.next()) {
+        if (rst.next()) {
             Bid bid = new Bid();
             bid.setBid_ID(rst.getInt(1));
             bid.setUserID(rst.getInt(2));

@@ -18,6 +18,19 @@ CREATE TABLE Users
     CONSTRAINT PRIMARY KEY (userID)
 );
 
+UPDATE Users
+set userID=?,
+    userName=?,
+    f_Name=?,
+    l_Name=?,
+    email=?,
+    telephone=?,
+    address=?,
+    password=?,
+    img=?,
+    type=?,
+    status=?
+WHERE userID = ? && type = 'Seller';
 
 
 CREATE TABLE Category
