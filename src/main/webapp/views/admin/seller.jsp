@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.User" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Madhusha Prasad
@@ -17,11 +20,11 @@
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
     <%--    custom css--%>
-    <link rel="stylesheet" href="../../assets/css/index.css"/>
-    <link rel="stylesheet" href="../../assets/css/admin/buttons.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/index.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/buttons.css"/>
 
     <%--    import Bootstrap css--%>
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"/>
 
     <%--    import sweet alert js--%>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -103,7 +106,7 @@
                 <div class="row mt-3">
                     <div class="col-lg-12">
                         <%--search Seller--%>
-                        <form method="" action="${pageContext.request.contextPath}/#">
+                        <form method="get" action="${pageContext.request.contextPath}/#">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">
@@ -126,7 +129,7 @@
                         </form>
                     </div>
                     <div class="col-12">
-                        <form id="sellerForm" method="" action="${pageContext.request.contextPath}/#">
+                        <form id="sellerForm" method="post" action="${pageContext.request.contextPath}/seller">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
@@ -196,7 +199,7 @@
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
-                                <button type="button" class="btn btn-primary" id="btnCreate">Create</button>
+                                <button type="submit" class="btn btn-primary" id="btnCreate">Create</button>
                                 <button class="btn btn-warning text-white btnUpdate">update</button>
                                 <button type="submit" class="btn btn-danger">Cancel</button>
                             </div>
@@ -206,7 +209,7 @@
             </div>
         </div>
         <div class="item">
-            <%--            On going Seller table div--%>
+            <%--On going Seller table div--%>
             <div class="row ml-md-2 mt-3">
                 <h4 class="mt-3 mb-4">Ongoing Seller</h4>
                 <table class="table table-responsive">
@@ -223,6 +226,29 @@
                     </tr>
                     </thead>
                     <tbody id="sellerTableBody">
+                    <c:forEach items="${userDetails}" var="users">
+                        <tr>
+                            <td>${users.userID}</td>
+                            <td>${users.userName}</td>
+                            <td>${users.f_Name}</td>
+                            <td>${users.l_Name}</td>
+                            <td>${users.email}</td>
+                            <td>${users.telephone}</td>
+                            <td>${users.address}</td>
+                            <td>${users.passowrd}</td>
+                            <td>${users.img}</td>
+                            <td>${users.type}</td>
+
+                            <td>
+                                <i style='cursor: pointer' class='fas fa-edit btnEdit text-warning'
+                                   onclick="editBid()"></i></td>
+                            <td>
+                                <form action="delete">
+                                    <i style='cursor: pointer' class='fas fa-trash-alt btnDelte text-danger'></i>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <nav
@@ -251,8 +277,8 @@
         </div>
     </div>
 </div>
-<script src="../../assets/js/jquery.js"></script>
-<script src="../../assets/js/index.js"></script>
-<script src="../../assets/js/admin/seller.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/admin/seller.js"></script>
 </body>
 </html>
