@@ -3,18 +3,22 @@ package servlet;
 import model.Bid;
 import model.Item;
 import service.custom.BidService;
+import service.custom.CategoryService;
 import service.custom.Impl.BidServiceImpl;
+import service.custom.Impl.CategoryServiceImpl;
 import service.custom.ItemService;
 import service.custom.Impl.ItemServiceImpl;
 import util.DBConnection;
-
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,10 +64,36 @@ public class ItemServlet extends HttpServlet {
                 try {
                     ArrayList<Item> all = itemService.getAll();
                     request.setAttribute("itemDetails", all);
-                    RequestDispatcher bidDetails = request.getRequestDispatcher("/views/admin/item.jsp");
-                    bidDetails.forward(request, response);
+                    RequestDispatcher itemDetails = request.getRequestDispatcher("/views/admin/item.jsp");
+                    itemDetails.forward(request, response);
                 } catch (ClassNotFoundException | SQLException e) {
                     e.printStackTrace();
+                }
+                break;
+            case "getItemID":
+                try {
+                    ItemService itemService2 = new ItemServiceImpl();
+
+                    ArrayList<Item> allItem = itemService2.getAll();
+                    JsonArrayBuilder allitemJson = Json.createArrayBuilder();
+
+                    for (Item item : allItem) {
+
+                        JsonObjectBuilder itemJson = Json.createObjectBuilder();
+                        int itemID = item.getItemID();
+                        String itemName = item.getName();
+                        itemJson.add("itemID", itemID);
+                        itemJson.add("itemName", itemName);
+                        allitemJson.add(itemJson.build());
+
+                    }
+                    System.out.println(allitemJson);
+                    PrintWriter writer2 = response.getWriter();
+                    writer2.print(allitemJson.build());
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
                 }
                 break;
             case "delete":
@@ -138,7 +168,6 @@ public class ItemServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-
 
             String ItemID = req.getParameter("itemID");
             String userID = req.getParameter("userID");

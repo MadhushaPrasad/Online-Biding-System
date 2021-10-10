@@ -99,4 +99,19 @@ public class ItemServiceImpl implements ItemService {
         return itemList;
     }
 
+    @Override
+    public ArrayList<Item> getAllItemName() throws ClassNotFoundException, SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pst = connection.prepareStatement("SELECT itemID , name FROM item");
+        ResultSet rst = pst.executeQuery();
+        ArrayList<Item> itemList = new ArrayList<>();
+        while (rst.next()) {
+            Item item = new Item();
+            item.setItemID(rst.getInt(1));
+            item.setName(rst.getString(2));
+            itemList.add(item);
+        }
+
+        return itemList;
+    }
 }
