@@ -1,0 +1,11 @@
+#profileImage{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: #005cbf;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.78));
+}
+
+.navigationBar{
+    background: linear-gradient(89.82deg, #0500FF 0.09%, #07048A 100%);
+}
