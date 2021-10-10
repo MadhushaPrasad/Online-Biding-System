@@ -7,7 +7,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light navigationBar">
-    <a class="navbar-brand font-weight-bold text-white" href="#">Logo</a>
+    <div class="pl-2">
+        <a class="navbar-brand font-weight-bold text-white"
+           style="display:flex;align-item:center;justify-content:center;width: fit-content;height:50px;background-color:#ffffff;"
+           href="${pageContext.request.contextPath}/views/client/index.jsp">
+            <img src="../../assets/images/logo.png" alt="logo" height="50px">
+        </a>
+    </div>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,7 +36,8 @@
                     <a class="nav-link text-white" href="#">Contact Us</a>
                 </li>
             </ul>
-            <img class="mt-sm-2 mt-lg-0" id="profileImage" src="${pageContext.request.contextPath}/assets/images/me.jpg" alt="profile Image">
+            <img class="mt-sm-2 mt-lg-0" id="profileImage" src="${pageContext.request.contextPath}/assets/images/me.jpg"
+                 alt="profile Image">
         </div>
     </div>
 </nav>
