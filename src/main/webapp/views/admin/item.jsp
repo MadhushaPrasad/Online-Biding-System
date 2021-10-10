@@ -81,10 +81,12 @@
                                     <div class="itemContainer">
                                         <form action="" method="GET">
                                             <img id="itemImage">
-                                            <input type="text" placeholder="Choose"
+                                            <input type="text" 
+                                            	   placeholder="Choose"
                                                    onfocus="(this.type='file')"
                                                    required
                                                    id="itemImageInput"
+                                                   name="itemImage"
                                             >
                                             <button type="button" id="itemImageRemove">Remove</button>
                                         </form>
@@ -94,7 +96,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
-                                        <select class="custom-select" id="department" name="categoryID">
+                                        <select class="custom-select" id="categoryIDList" name="categoryID">
                                             <option selected>Category Name</option>
                                             <option value="1">Laptop</option>
                                             <option value="2">Mobile Phone</option>
@@ -122,16 +124,16 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">LKR</span>
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control" id="amount" name="amount"
                                                aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-text">.00</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
-                                <button type="button" class="btn btn-primary" id="btnCreate">Create</button>
-                                <button class="btn btn-warning text-white btnUpdate">update</button>
-                                <button type="submit" class="btn btn-danger">Cancel</button>
+                                <button type="button" class="btn btn-primary" id="btnCreate" name="option" value="create">Create</button>
+                                <button type="submit" class="btn btn-warning text-white btnUpdate" name="option" value="update">update</button>
+                                <button type="submit" class="btn btn-danger" name="option" value="delete">Cancel</button>
                             </div>
                         </form>
                     </div>
