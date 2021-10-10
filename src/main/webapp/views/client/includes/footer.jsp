@@ -8,9 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="row footerDiv text-white font-weight-bold">
     <div class="col-lg-4">
-        <div class="pl-4">
+        <div class="pl-2">
             <div class="col-4">
-                <img src="" alt="logo">
+                <a class="navbar-brand font-weight-bold text-white"
+                   style="display:flex;align-item:center;justify-content:center;width: fit-content;height:50px;background-color:#ffffff;"
+                   href="${pageContext.request.contextPath}/views/client/index.jsp">
+                    <img src="../../assets/images/logo.png" alt="logo" height="50px">
+                </a>
             </div>
         </div>
         <div class="pl-4">
@@ -46,7 +50,7 @@
         <div>
             <div>
                 <p>
-                    Lorem ipsum dolor sit  <br>amet,consectetur adipisicing elit.
+                    Lorem ipsum dolor sit <br>amet,consectetur adipisicing elit.
                     <br>Cupiditate ea laudantium magni qui
                 </p>
             </div>
