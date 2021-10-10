@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    getAllSubCategory();
     getAllCategoryNames();
 });
 
@@ -24,5 +23,27 @@ function getAllCategoryNames() {
         }
     }).fail(function (xhr) {
         console.log(xhr);
+    });
+}
+
+// edit bid function
+function editItem() {
+    $('#itemTableBody tr').click(function () {
+        const itemID = $($(this).children()[0]).text();
+        const categoryID = $($(this).children()[1]).text();
+        const userID = $($(this).children()[2]).text();
+        const itemName = $($(this).children()[3]).text();
+        const description = $($(this).children()[4]).text();
+        const price = $($(this).children()[5]).text();
+        const image = $($(this).children()[6]).text();
+        const status = $($(this).children()[7]).text();
+        console.log(itemID);
+        $('#pItemID').val(itemID);
+        $('#pUserID').val(userID);
+        $('#itemName').val(itemName);
+        $('#description').val(description);
+        $('#amount').val(price);
+        $('#itemImageInput').val(image);
+        $('#categoryIDList').prop('selectedIndex', categoryID);
     });
 }

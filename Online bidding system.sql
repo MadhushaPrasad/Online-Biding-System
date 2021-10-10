@@ -140,10 +140,14 @@ VALUES ('nethmini99', 'nethmini', 'tharuka', 'tharukatharu@gmail.com', '07776390
 INSERT INTO Users(userName, f_Name, l_Name, email, telephone, address, password, img, type)
 VALUES ('nethmini99', 'nethmini', 'tharuka', 'tharukatharu@gmail.com', '0777639027', 'Tangalle', '1234', 'profile.jpg',
         'Admin');
-INSERT INTO Item(category_ID, userID, name, description, price, image, status) VALUES (1,2,'Samsung Laptop','hsdghsdgdj',150000,'item.png','pending');
+INSERT INTO Item(category_ID, userID, name, description, price, image, status)
+VALUES (1, 2, 'Samsung Laptop', 'hsdghsdgdj', 150000, 'item.png', 'pending');
 
-INSERT INTO Bid(userID, itemID, amount, bid_time, bid_date, status) VALUES (1,1,5000,current_time(),current_time,'running');
+INSERT INTO Bid(userID, itemID, amount, bid_time, bid_date, status)
+VALUES (1, 1, 5000, current_time(), current_time, 'running');
 /*UPDATE Bid set bid_ID=?,userID=?,itemID=?,amount=?,bid_date = urrent_time(),bid_time=urrent_time(),status='running' WHERE bid_ID = ?;*/
 
+INSERT INTO item(category_ID, userID, name, description, price, image, status)
+VALUES (4, 1, 'Lenevo45kh45', 'dhsgfjshgjhgdjgfsdjgjfsdgf', 1205.50, 'item.png', 'runing');
 
 
