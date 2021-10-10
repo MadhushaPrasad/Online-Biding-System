@@ -6,16 +6,15 @@ public class Item {
 	private int userID;
 	private String name;
 	private String description;
-	private int price;
+	private double price;
 	private String image;
 	private String status;
 	
 	public Item() {
 		
 	}
-	
-	public Item(int itemID, int category_ID, int userID, String name, String description, int price, String image, String status) {
-		super();
+
+	public Item(int itemID, int category_ID, int userID, String name, String description, double price, String image, String status) {
 		this.itemID = itemID;
 		this.category_ID = category_ID;
 		this.userID = userID;
@@ -25,6 +24,7 @@ public class Item {
 		this.image = image;
 		this.status = status;
 	}
+
 
 	public int getItemID() {
 		return itemID;
@@ -66,11 +66,11 @@ public class Item {
 		this.description = description;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -89,6 +89,4 @@ public class Item {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-
 }
