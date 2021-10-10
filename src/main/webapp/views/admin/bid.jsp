@@ -175,9 +175,6 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
                                         <select class="custom-select" id="itemId" name="itemId">
-                                            <option selected disabled>Item Name</option>
-                                            <option value="1">Laptop</option>
-                                            <option value="2">Mobile Phone</option>
                                         </select>
                                     </div>
                                 </div>
