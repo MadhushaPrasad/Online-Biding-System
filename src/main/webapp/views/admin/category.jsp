@@ -1,6 +1,5 @@
 <%@ page import="javax.json.JsonObject" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,67 +25,14 @@
 </head>
 <body>
 <div id="wrapper">
-    <div class="top_navbar">
-        <div id="hamburger">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-        </div>
-        <div class="top_menu">
-            <div class="logo">logo</div>
-            <div class="text-success font-weight-bold text-center">
-                Online bidding system
-            </div>
-            <ul>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-user"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <%--    header--%>
+    <%@include file="includes/header.jsp" %>
+    <%--    header finished--%>
 
-    <div class="sidebar">
-        <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/views/admin/index.jsp">
-                    <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-                    <span class="title">DashBoard</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-user-tie"></i></span>
-                    <span class="title">Seller</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-child"></i></span>
-                    <span class="title">Bidder</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="active">
-                    <span class="icon"><i class="fas fa-blog"></i></span>
-                    <span class="title">Category</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-box"></i></span>
-                    <span class="title">Item</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-gavel"></i></span>
-                    <span class="title">Bid</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <%--    slider--%>
+    <%@include file="includes/slider.jsp" %>
+    <%--slider finished--%>
+
     <%--category section--%>
     <div class="main_container">
         <div class="item">
