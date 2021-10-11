@@ -12,6 +12,7 @@ function editBid() {
         const amount = $($(this).children()[3]).text();
         console.log(itemID);
         $('#pBidID').val(bidID);
+        $('#bidID').val(bidID);
         $('#pUserID').val(userID);
         $('#itemId').prop('selectedIndex', itemID);
         $('#amount').val(amount);

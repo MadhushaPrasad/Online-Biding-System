@@ -58,14 +58,31 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public User search(Integer integer) throws ClassNotFoundException, SQLException {
-        return null;
+    public User search(Integer id) throws ClassNotFoundException, SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pst = connection.prepareStatement("SELECT * FROM users WHERE userID=?");
+        pst.setObject(1, id);
+        ResultSet resultSet = pst.executeQuery();
+        User user = new User();
+        while (resultSet.next()) {
+            user.setUserID(resultSet.getInt(1));
+            user.setUserName(resultSet.getString(2));
+            user.setF_Name(resultSet.getString(3));
+            user.setL_Name(resultSet.getString(4));
+            user.setEmail(resultSet.getString(5));
+            user.setTelephone(resultSet.getString(6));
+            user.setAddress(resultSet.getString(7));
+            user.setPassword(resultSet.getString(8));
+            user.setImg(resultSet.getString(9));
+            user.setType(resultSet.getString(10));
+        }
+        return user;
     }
 
     @Override
     public ArrayList<User> getAll() throws ClassNotFoundException, SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement pst = connection.prepareStatement("SELECT * FROM users");
+        PreparedStatement pst = connection.prepareStatement("SELECT * FROM users WHERE type='Seller'");
         ResultSet resultSet = pst.executeQuery();
         ArrayList<User> allUsers = new ArrayList<>();
         while (resultSet.next()) {

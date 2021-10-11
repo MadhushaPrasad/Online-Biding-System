@@ -158,6 +158,8 @@
                                                 class="form-control"
                                                 placeholder="Bid ID"
                                                 name="bidID"
+                                                disabled
+                                                value="${bid_ID}"
                                         />
                                     </div>
                                 </div>

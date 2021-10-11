@@ -10,5 +10,19 @@
 <h1>Hello</h1>
 <a href="${pageContext.request.contextPath}/views/admin/category.jsp">Category</a>
 
+<form action="upload" method="post" enctype="multipart/form-data">
+    <div class="sellerContainer">
+
+        <img id="editProfileImage">
+        <input type="text"
+               placeholder="Choose"
+               onfocus="(this.type='file')"
+               required
+               id="editProfile"
+               name="file"
+        >
+        <button type="submit" id="bntRemoveProfile">Remove</button>
+    </div>
+</form>
 </body>
 </html>
