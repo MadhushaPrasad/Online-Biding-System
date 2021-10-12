@@ -20,6 +20,7 @@
 
     <%--import footer css--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/client/index.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/client/product.css"/>
 
     <!-- import icon -->
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
@@ -91,8 +92,311 @@
     </div>
 
     <%--    litem List Div--%>
-    <div class="pb-5 mt-5">
-
+    <div class="row d-flex justify-content-between align-items-center pb-5 mt-5 mr-0">
+        <div style="width: 100%" class="row mr-0 mb-5 d-flex justify-content-between">
+            <div class="container">
+                <div class="row">
+                    <img class="img" src="${pageContext.request.contextPath}/assets/images/img_13.png" alt="">
+                </div>
+                <div class="row mt-2 mb-2 d-flex justify-content-center align-items-center text-center">
+                    <h5>Surface Laptop</h5>
+                </div>
+                <div class="row">
+                    <p class="pl-4 text-justify pr-4 font-weight-bold">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Adipiscing eros, ac pellentesque metus, in
+                        tempus faucibus eget proin. Mauris, orci ut amet egestas ac mi non molestie laoreet.
+                    </p>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <div class="col-6">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-12 text-left">
+                                <i class="fas fa-gavel" style="color: #1c7430"></i>
+                                <h5 class="font-weight-bold">Current Bid</h5>
+                                <p class="font-weight-bold">$876.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h5 class="text-danger font-weight-bold">Price</h5>
+                        <p class="text-danger font-weight-bold">$876.00</p>
+                    </div>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <p class="text-danger font-weight-bold">10d:20h:10min:10s</p>
+                    <p class="text-success font-weight-bold">30 Bids</p>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <button class="btn font-weight-bold text-white btnSubmit">Submit a bit</button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <img class="img" src="${pageContext.request.contextPath}/assets/images/img_13.png" alt="">
+                </div>
+                <div class="row mt-2 mb-2 d-flex justify-content-center align-items-center text-center">
+                    <h5>Surface Laptop</h5>
+                </div>
+                <div class="row">
+                    <p class="pl-4 text-justify pr-4 font-weight-bold">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Adipiscing eros, ac pellentesque metus, in
+                        tempus faucibus eget proin. Mauris, orci ut amet egestas ac mi non molestie laoreet.
+                    </p>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <div class="col-6">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-12 text-left">
+                                <i class="fas fa-gavel" style="color: #1c7430"></i>
+                                <h5 class="font-weight-bold">Current Bid</h5>
+                                <p class="font-weight-bold">$876.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h5 class="text-danger font-weight-bold">Price</h5>
+                        <p class="text-danger font-weight-bold">$876.00</p>
+                    </div>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <p class="text-danger font-weight-bold">10d:20h:10min:10s</p>
+                    <p class="text-success font-weight-bold">30 Bids</p>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <button class="btn font-weight-bold text-white btnSubmit">Submit a bit</button>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%" class="row mr-0 mb-5 d-flex justify-content-between">
+            <div class="container">
+                <div class="row">
+                    <img class="img" src="${pageContext.request.contextPath}/assets/images/img_13.png" alt="">
+                </div>
+                <div class="row mt-2 mb-2 d-flex justify-content-center align-items-center text-center">
+                    <h5>Surface Laptop</h5>
+                </div>
+                <div class="row">
+                    <p class="pl-4 text-justify pr-4 font-weight-bold">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Adipiscing eros, ac pellentesque metus, in
+                        tempus faucibus eget proin. Mauris, orci ut amet egestas ac mi non molestie laoreet.
+                    </p>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <div class="col-6">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-12 text-left">
+                                <i class="fas fa-gavel" style="color: #1c7430"></i>
+                                <h5 class="font-weight-bold">Current Bid</h5>
+                                <p class="font-weight-bold">$876.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h5 class="text-danger font-weight-bold">Price</h5>
+                        <p class="text-danger font-weight-bold">$876.00</p>
+                    </div>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <p class="text-danger font-weight-bold">10d:20h:10min:10s</p>
+                    <p class="text-success font-weight-bold">30 Bids</p>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <button class="btn font-weight-bold text-white btnSubmit">Submit a bit</button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <img class="img" src="${pageContext.request.contextPath}/assets/images/img_13.png" alt="">
+                </div>
+                <div class="row mt-2 mb-2 d-flex justify-content-center align-items-center text-center">
+                    <h5>Surface Laptop</h5>
+                </div>
+                <div class="row">
+                    <p class="pl-4 text-justify pr-4 font-weight-bold">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Adipiscing eros, ac pellentesque metus, in
+                        tempus faucibus eget proin. Mauris, orci ut amet egestas ac mi non molestie laoreet.
+                    </p>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <div class="col-6">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-12 text-left">
+                                <i class="fas fa-gavel" style="color: #1c7430"></i>
+                                <h5 class="font-weight-bold">Current Bid</h5>
+                                <p class="font-weight-bold">$876.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h5 class="text-danger font-weight-bold">Price</h5>
+                        <p class="text-danger font-weight-bold">$876.00</p>
+                    </div>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <p class="text-danger font-weight-bold">10d:20h:10min:10s</p>
+                    <p class="text-success font-weight-bold">30 Bids</p>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <button class="btn font-weight-bold text-white btnSubmit">Submit a bit</button>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%" class="row mr-0 mb-5 d-flex justify-content-between">
+            <div class="container">
+                <div class="row">
+                    <img class="img" src="${pageContext.request.contextPath}/assets/images/img_13.png" alt="">
+                </div>
+                <div class="row mt-2 mb-2 d-flex justify-content-center align-items-center text-center">
+                    <h5>Surface Laptop</h5>
+                </div>
+                <div class="row">
+                    <p class="pl-4 text-justify pr-4 font-weight-bold">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Adipiscing eros, ac pellentesque metus, in
+                        tempus faucibus eget proin. Mauris, orci ut amet egestas ac mi non molestie laoreet.
+                    </p>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <div class="col-6">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-12 text-left">
+                                <i class="fas fa-gavel" style="color: #1c7430"></i>
+                                <h5 class="font-weight-bold">Current Bid</h5>
+                                <p class="font-weight-bold">$876.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h5 class="text-danger font-weight-bold">Price</h5>
+                        <p class="text-danger font-weight-bold">$876.00</p>
+                    </div>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <p class="text-danger font-weight-bold">10d:20h:10min:10s</p>
+                    <p class="text-success font-weight-bold">30 Bids</p>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <button class="btn font-weight-bold text-white btnSubmit">Submit a bit</button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <img class="img" src="${pageContext.request.contextPath}/assets/images/img_13.png" alt="">
+                </div>
+                <div class="row mt-2 mb-2 d-flex justify-content-center align-items-center text-center">
+                    <h5>Surface Laptop</h5>
+                </div>
+                <div class="row">
+                    <p class="pl-4 text-justify pr-4 font-weight-bold">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Adipiscing eros, ac pellentesque metus, in
+                        tempus faucibus eget proin. Mauris, orci ut amet egestas ac mi non molestie laoreet.
+                    </p>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <div class="col-6">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-12 text-left">
+                                <i class="fas fa-gavel" style="color: #1c7430"></i>
+                                <h5 class="font-weight-bold">Current Bid</h5>
+                                <p class="font-weight-bold">$876.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h5 class="text-danger font-weight-bold">Price</h5>
+                        <p class="text-danger font-weight-bold">$876.00</p>
+                    </div>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <p class="text-danger font-weight-bold">10d:20h:10min:10s</p>
+                    <p class="text-success font-weight-bold">30 Bids</p>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <button class="btn font-weight-bold text-white btnSubmit">Submit a bit</button>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%" class="row mr-0 mb-5 d-flex justify-content-between">
+            <div class="container">
+                <div class="row">
+                    <img class="img" src="${pageContext.request.contextPath}/assets/images/img_13.png" alt="">
+                </div>
+                <div class="row mt-2 mb-2 d-flex justify-content-center align-items-center text-center">
+                    <h5>Surface Laptop</h5>
+                </div>
+                <div class="row">
+                    <p class="pl-4 text-justify pr-4 font-weight-bold">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Adipiscing eros, ac pellentesque metus, in
+                        tempus faucibus eget proin. Mauris, orci ut amet egestas ac mi non molestie laoreet.
+                    </p>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <div class="col-6">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-12 text-left">
+                                <i class="fas fa-gavel" style="color: #1c7430"></i>
+                                <h5 class="font-weight-bold">Current Bid</h5>
+                                <p class="font-weight-bold">$876.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h5 class="text-danger font-weight-bold">Price</h5>
+                        <p class="text-danger font-weight-bold">$876.00</p>
+                    </div>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <p class="text-danger font-weight-bold">10d:20h:10min:10s</p>
+                    <p class="text-success font-weight-bold">30 Bids</p>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <button class="btn font-weight-bold text-white btnSubmit">Submit a bit</button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <img class="img" src="${pageContext.request.contextPath}/assets/images/img_13.png" alt="">
+                </div>
+                <div class="row mt-2 mb-2 d-flex justify-content-center align-items-center text-center">
+                    <h5>Surface Laptop</h5>
+                </div>
+                <div class="row">
+                    <p class="pl-4 text-justify pr-4 font-weight-bold">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Adipiscing eros, ac pellentesque metus, in
+                        tempus faucibus eget proin. Mauris, orci ut amet egestas ac mi non molestie laoreet.
+                    </p>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <div class="col-6">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="col-12 text-left">
+                                <i class="fas fa-gavel" style="color: #1c7430"></i>
+                                <h5 class="font-weight-bold">Current Bid</h5>
+                                <p class="font-weight-bold">$876.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h5 class="text-danger font-weight-bold">Price</h5>
+                        <p class="text-danger font-weight-bold">$876.00</p>
+                    </div>
+                </div>
+                <div class="row pl-4 pr-4 d-flex justify-content-between align-items-center">
+                    <p class="text-danger font-weight-bold">10d:20h:10min:10s</p>
+                    <p class="text-success font-weight-bold">30 Bids</p>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <button class="btn font-weight-bold text-white btnSubmit">Submit a bit</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row mr-0">
@@ -107,7 +411,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <%@ include file="views/client/includes/footer.jsp" %>
 </main>

@@ -24,16 +24,19 @@
         <div class="row col-lg-12 d-flex justify-content-lg-end align-items-lg-center align-items-sm-start">
             <ul class="navbar-nav">
                 <li class="nav-item active px-2">
-                    <a class="nav-link font-weight-bold text-white" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link font-weight-bold text-white" href="${pageContext.request.contextPath}/index.jsp">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item font-weight-bold px-2">
-                    <a class="nav-link text-white" href="#">Product</a>
+                    <a class="nav-link text-white" href="${pageContext.request.contextPath}/views/client/Product.jsp">Product</a>
                 </li>
                 <li class="nav-item font-weight-bold px-2">
-                    <a class="nav-link text-white" href="#">About Us</a>
+                    <a class="nav-link text-white" href="${pageContext.request.contextPath}/views/client/AboutUs.jsp">About Us</a>
                 </li>
                 <li class="nav-item px-2 font-weight-bold">
-                    <a class="nav-link text-white" href="#">Contact Us</a>
+                    <a class="nav-link text-white" href="${pageContext.request.contextPath}/views/client/ContactUs.jsp">Contact Us</a>
+                </li>
+                <li class="nav-item px-2 font-weight-bold">
+                    <a class="nav-link text-white" href="${pageContext.request.contextPath}/views/admin/index.jsp">Login</a>
                 </li>
             </ul>
             <img class="mt-sm-2 mt-lg-0" id="profileImage" src="${pageContext.request.contextPath}/assets/images/me.jpg"
