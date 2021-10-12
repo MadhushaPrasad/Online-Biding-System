@@ -6,12 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav class="navbar navbar-expand-lg navbar-light bg-light navigationBar">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navigationBar position-sticky sticky-top">
     <div class="pl-2">
         <a class="navbar-brand font-weight-bold text-white"
            style="display:flex;align-item:center;justify-content:center;width: fit-content;height:50px;background-color:#ffffff;"
-           href="${pageContext.request.contextPath}/views/client/index.jsp">
-            <img src="../../assets/images/logo.png" alt="logo" height="50px">
+           href="${pageContext.request.contextPath}/views/index.jsp">
+            <img src="http://localhost:8080/Online-Biding-System/assets/images/logo.png" alt="logo" height="50px">
         </a>
     </div>
 

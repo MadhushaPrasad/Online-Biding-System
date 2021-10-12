@@ -150,22 +150,22 @@
                     </div>
                     <div class="col-12">
                         <form method="POST" action="${pageContext.request.contextPath}/ItemServlet">
-                            <div class="row mb-2">
-                                <div class="col-lg-6 col-sm-12">
-                                    <div class="itemContainer">
+                            <%--                            <div class="row mb-2">--%>
+                            <%--                                <div class="col-lg-6 col-sm-12">--%>
+                            <%--                                    <div class="itemContainer">--%>
 
-                                        <img id="itemImage">
-                                        <input type="text"
-                                               placeholder="Choose"
-                                               onfocus="(this.type='file')"
-                                               required
-                                               id="itemImageInput"
-                                               name="itemImage"
-                                        >
-                                        <button type="button" id="itemImageRemove">Remove</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <%--                                        <img id="itemImage">--%>
+                            <%--                                        <input type="text"--%>
+                            <%--                                               placeholder="Choose"--%>
+                            <%--                                               onfocus="(this.type='file')"--%>
+                            <%--                                               required--%>
+                            <%--                                               id="itemImageInput"--%>
+                            <%--                                               name="itemImage"--%>
+                            <%--                                        >--%>
+                            <%--                                        <button type="button" id="itemImageRemove">Remove</button>--%>
+                            <%--                                    </div>--%>
+                            <%--                                </div>--%>
+                            <%--                            </div>--%>
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">

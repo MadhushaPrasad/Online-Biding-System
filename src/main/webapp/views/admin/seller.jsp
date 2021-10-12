@@ -169,7 +169,7 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">
                                         <input
-                                                type="text"
+                                                type="hidden"
                                                 id="pSellerID"
                                                 class="form-control"
                                                 placeholder="Seller ID"
@@ -264,7 +264,7 @@
         <div class="item">
             <%--On going Seller table div--%>
             <div class="row ml-md-2 mt-3">
-                <h4 class="mt-3 mb-4">Ongoing Seller</h4>
+                <h4 class="mt-3 mb-4">Seller List</h4>
                 <table class="table table-responsive">
                     <thead>
                     <tr>
