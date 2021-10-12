@@ -87,7 +87,6 @@ public class ItemServlet extends HttpServlet {
                         allitemJson.add(itemJson.build());
 
                     }
-                    System.out.println(allitemJson);
                     PrintWriter writer2 = response.getWriter();
                     writer2.print(allitemJson.build());
                 } catch (ClassNotFoundException e) {

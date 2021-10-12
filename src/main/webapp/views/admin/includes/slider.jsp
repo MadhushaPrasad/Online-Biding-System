@@ -9,37 +9,37 @@
 <div class="sidebar z-index">
     <ul>
         <li>
-            <a href="${pageContext.request.contextPath}/views/admin/index.jsp" class="active">
+            <a class="active" href="${pageContext.request.contextPath}/views/admin/index.jsp" id="dashboard">
                 <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
                 <span class="title">DashBoard</span>
             </a>
         </li>
         <li>
-            <a href="${pageContext.request.contextPath}/views/admin/seller.jsp">
+            <a href="${pageContext.request.contextPath}/views/admin/seller.jsp" id="seller">
                 <span class="icon"><i class="fas fa-user-tie"></i></span>
                 <span class="title">Seller</span>
             </a>
         </li>
         <li>
-            <a href="${pageContext.request.contextPath}/views/admin/bidder.jsp">
+            <a href="${pageContext.request.contextPath}/views/admin/bidder.jsp" id="bidder">
                 <span class="icon"><i class="fas fa-child"></i></span>
                 <span class="title">Bidder</span>
             </a>
         </li>
         <li>
-            <a href="${pageContext.request.contextPath}/views/admin/category.jsp">
+            <a href="${pageContext.request.contextPath}/views/admin/category.jsp" id="category">
                 <span class="icon"><i class="fas fa-blog"></i></span>
                 <span class="title">Category</span>
             </a>
         </li>
         <li>
-            <a href="${pageContext.request.contextPath}/views/admin/item.jsp">
+            <a href="${pageContext.request.contextPath}/views/admin/item.jsp" id="item">
                 <span class="icon"><i class="fas fa-box"></i></span>
                 <span class="title">Item</span>
             </a>
         </li>
         <li>
-            <a href="${pageContext.request.contextPath}/views/admin/bid.jsp">
+            <a href="${pageContext.request.contextPath}/views/admin/bid.jsp" id="bid">
                 <span class="icon"><i class="fas fa-gavel"></i></span>
                 <span class="title">Bid</span>
             </a>
