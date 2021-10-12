@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.User" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Madhusha Prasad
@@ -17,11 +20,11 @@
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
     <%--    custom css--%>
-    <link rel="stylesheet" href="../../assets/css/index.css"/>
-    <link rel="stylesheet" href="../../assets/css/admin/buttons.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/index.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/buttons.css"/>
 
     <%--    import Bootstrap css--%>
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"/>
 
     <%--    import sweet alert js--%>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -30,67 +33,14 @@
 </head>
 <body>
 <div id="wrapper">
-    <div class="top_navbar">
-        <div id="hamburger">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-        </div>
-        <div class="top_menu">
-            <div class="logo">logo</div>
-            <div class="text-success font-weight-bold text-center">
-                Online bidding system
-            </div>
-            <ul>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-user"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <%--    header--%>
+    <%@include file="includes/header.jsp" %>
+    <%--    header finished--%>
 
-    <div class="sidebar">
-        <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/views/admin/index.jsp">
-                    <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-                    <span class="title">DashBoard</span>
-                </a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/views/admin/seller.jsp" class="active">
-                    <span class="icon"><i class="fas fa-user-tie"></i></span>
-                    <span class="title">Seller</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-child"></i></span>
-                    <span class="title">Bidder</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-blog"></i></span>
-                    <span class="title">Category</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-box"></i></span>
-                    <span class="title">Item</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-gavel"></i></span>
-                    <span class="title">Bid</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <%--    slider--%>
+    <%@include file="includes/slider.jsp" %>
+    <%--slider finished--%>
+
     <%--Seller section--%>
     <div class="main_container">
         <div class="item">
@@ -103,7 +53,7 @@
                 <div class="row mt-3">
                     <div class="col-lg-12">
                         <%--search Seller--%>
-                        <form method="" action="${pageContext.request.contextPath}/#">
+                        <form method="get" action="${pageContext.request.contextPath}/#">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">
@@ -126,7 +76,7 @@
                         </form>
                     </div>
                     <div class="col-12">
-                        <form id="sellerForm" method="" action="${pageContext.request.contextPath}/#">
+                        <form id="sellerForm" method="post" action="${pageContext.request.contextPath}/seller">
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
@@ -196,7 +146,7 @@
                                 </div>
                             </div>
                             <div class="row d-flex justify-content-around mt-4">
-                                <button type="button" class="btn btn-primary" id="btnCreate">Create</button>
+                                <button type="submit" class="btn btn-primary" id="btnCreate">Create</button>
                                 <button class="btn btn-warning text-white btnUpdate">update</button>
                                 <button type="submit" class="btn btn-danger">Cancel</button>
                             </div>
@@ -206,7 +156,7 @@
             </div>
         </div>
         <div class="item">
-            <%--            On going Seller table div--%>
+            <%--On going Seller table div--%>
             <div class="row ml-md-2 mt-3">
                 <h4 class="mt-3 mb-4">Ongoing Seller</h4>
                 <table class="table table-responsive">
@@ -223,6 +173,28 @@
                     </tr>
                     </thead>
                     <tbody id="sellerTableBody">
+                    <c:forEach items="${userDetails}" var="users">
+                        <tr>
+                            <td>${users.userID}</td>
+                            <td>${users.userName}</td>
+                            <td>${users.f_Name}</td>
+                            <td>${users.l_Name}</td>
+                            <td>${users.email}</td>
+                            <td>${users.telephone}</td>
+                            <td>${users.address}</td>
+                            <td>${users.passowrd}</td>
+                            <td>${users.img}</td>
+                            <td>${users.type}</td>
+
+                            <td>
+                                <i style='cursor: pointer' class='fas fa-edit btnEdit text-warning'></i></td>
+                            <td>
+                                <form action="delete">
+                                    <i style='cursor: pointer' class='fas fa-trash-alt btnDelte text-danger'></i>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
                 <nav
@@ -251,8 +223,8 @@
         </div>
     </div>
 </div>
-<script src="../../assets/js/jquery.js"></script>
-<script src="../../assets/js/index.js"></script>
-<script src="../../assets/js/admin/seller.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/admin/seller.js"></script>
 </body>
 </html>

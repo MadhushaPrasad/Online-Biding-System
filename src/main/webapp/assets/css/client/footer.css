@@ -1,0 +1,24 @@
+.footerDiv {
+    margin-right: 0;
+    background: linear-gradient(80.88deg, #0500FF 5.98%, #07048A 90.38%);
+}
+
+.linkDiv {
+    margin-left: 12px;
+}
+
+.underLine {
+    border-bottom-width: 10px;
+}
+
+.emailIconDiv{
+    position: relative;
+    left: -10px;
+    width: 40px;
+    height: 38px;
+    background: #01BC43;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

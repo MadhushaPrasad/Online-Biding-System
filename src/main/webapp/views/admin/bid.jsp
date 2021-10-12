@@ -88,78 +88,24 @@
                     icon: "success",
                 });
                 <% session1.setAttribute("message",""); %>
-               
+
             } else if (mes === 'false' && 'add') {
                 swal("Bid is not Deleted", {
                     icon: "error",
                 });
                 <% session1.setAttribute("message",""); %>
-                
+
             }
-            
+
         }
     </script>
-    <div class="top_navbar">
-        <div id="hamburger">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-        </div>
-        <div class="top_menu">
-            <div class="logo">logo</div>
-            <div class="text-success font-weight-bold text-center">
-                Online bidding system
-            </div>
-            <ul>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-user"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <%--    header--%>
+    <%@include file="includes/header.jsp" %>
+    <%--    header finished--%>
 
-    <div class="sidebar">
-        <ul>
-            <li>
-                <a href="${pageContext.request.contextPath}/views/admin/index.jsp">
-                    <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-                    <span class="title">DashBoard</span>
-                </a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/views/admin/seller.jsp">
-                    <span class="icon"><i class="fas fa-user-tie"></i></span>
-                    <span class="title">Seller</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-child"></i></span>
-                    <span class="title">Bidder</span>
-                </a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/views/admin/category.jsp">
-                    <span class="icon"><i class="fas fa-blog"></i></span>
-                    <span class="title">Category</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><i class="fas fa-box"></i></span>
-                    <span class="title">Item</span>
-                </a>
-            </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/views/admin/bid.jsp" class="active">
-                    <span class="icon"><i class="fas fa-gavel"></i></span>
-                    <span class="title">Bid</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <%--    slider--%>
+    <%@include file="includes/slider.jsp" %>
+    <%--slider finished--%>
     <%--Bid section--%>
     <div class="main_container">
         <div class="item">
@@ -229,9 +175,6 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-3">
                                         <select class="custom-select" id="itemId" name="itemId">
-                                            <option selected disabled>Item Name</option>
-                                            <option value="1">Laptop</option>
-                                            <option value="2">Mobile Phone</option>
                                         </select>
                                     </div>
                                 </div>
