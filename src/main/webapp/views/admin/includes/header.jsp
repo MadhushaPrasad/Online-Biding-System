@@ -15,7 +15,7 @@
     <div class="top_menu">
         <div class="logo"><a class="navbar-brand font-weight-bold text-white"
                              href="${pageContext.request.contextPath}/views/admin/index.jsp">
-            <img src="../../assets/images/logo.png" alt="logo" height="80px">
+            <img src="http://localhost:8080/Online-Biding-System/assets/images/logo.png" alt="logo" height="80px">
         </a></div>
         <div class="text-success font-weight-bold text-center">
             Online bidding system

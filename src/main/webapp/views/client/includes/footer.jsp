@@ -12,8 +12,9 @@
             <div class="col-4">
                 <a class="navbar-brand font-weight-bold text-white"
                    style="display:flex;align-item:center;justify-content:center;width: fit-content;height:50px;background-color:#ffffff;"
-                   href="${pageContext.request.contextPath}/views/client/index.jsp">
-                    <img src="../../assets/images/logo.png" alt="logo" height="50px">
+                   href="${pageContext.request.contextPath}/index.jsp">
+                    <img src="http://localhost:8080/Online-Biding-System/assets/images/logo.png" alt="logo"
+                         height="50px">
                 </a>
             </div>
         </div>

@@ -43,13 +43,13 @@ public class BidServlet extends HttpServlet {
             case "getAll":
                 BidService bidService = new BidServiceImpl();
                 try {
-                    ArrayList<Bid> all = bidService.getAll();
-                    for (Bid bid : all) {
+                    ArrayList<Bid> all1 = bidService.getAll();
+                    for (Bid bid : all1) {
                         System.out.println(bid.getBid_ID());
                     }
-                    req.setAttribute("bidDetails", all);
-                    RequestDispatcher bidDetails = req.getRequestDispatcher("/views/admin/bid.jsp");
-                    bidDetails.forward(req, resp);
+                    req.setAttribute("bidDetails", all1);
+                    RequestDispatcher bidDetails1 = req.getRequestDispatcher("/views/admin/bid.jsp");
+                    bidDetails1.forward(req, resp);
                 } catch (ClassNotFoundException | SQLException e) {
                     e.printStackTrace();
                 }

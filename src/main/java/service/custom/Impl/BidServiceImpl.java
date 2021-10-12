@@ -51,7 +51,7 @@ public class BidServiceImpl implements BidService {
         pst.setObject(1, id);
         ResultSet rst = pst.executeQuery();
         Bid bid = new Bid();
-        while (rst.next()) {
+        if (rst.next()) {
             bid.setBid_ID(rst.getInt(1));
             bid.setUserID(rst.getInt(2));
             bid.setItemID(rst.getInt(3));
@@ -69,7 +69,7 @@ public class BidServiceImpl implements BidService {
         PreparedStatement pst = connection.prepareStatement("SELECT * FROM bid");
         ResultSet rst = pst.executeQuery();
         ArrayList<Bid> bidList = new ArrayList<>();
-        if (rst.next()) {
+        while (rst.next()) {
             Bid bid = new Bid();
             bid.setBid_ID(rst.getInt(1));
             bid.setUserID(rst.getInt(2));

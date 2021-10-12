@@ -43,7 +43,7 @@ function editItem() {
         $('#itemName').val(itemName);
         $('#description').val(description);
         $('#amount').val(price);
-        $('#itemImageInput').val(image);
+        $('#editProfile').val(image);
         $('#categoryIDList').prop('selectedIndex', categoryID);
     });
 }

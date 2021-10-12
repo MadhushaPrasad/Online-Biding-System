@@ -153,11 +153,12 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">
                                         <input
-                                                type="text"
+                                                type="hidden"
                                                 id="pBidID"
                                                 class="form-control"
                                                 placeholder="Bid ID"
                                                 name="bidID"
+                                                value="${bid_ID}"
                                         />
                                     </div>
                                 </div>
