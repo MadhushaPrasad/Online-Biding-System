@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class SellerServiceImpl implements SellerService {
+public class BidderServiceImpl implements SellerService {
     @Override
     public boolean add(User user) throws ClassNotFoundException, SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
@@ -33,7 +33,7 @@ public class SellerServiceImpl implements SellerService {
     public boolean update(User user) throws ClassNotFoundException, SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
         PreparedStatement pst = connection.prepareStatement("UPDATE Users set userID=?,userName=?,f_Name=?,l_Name=?," +
-                "email=?,telephone=?,address=?,password=?,img=?,type=?,status=? WHERE userID=? && type = 'Seller'");
+                "email=?,telephone=?,address=?,password=?,img=?,type=?,status=? WHERE userID=? && type = 'Bidder'");
         pst.setObject(1, user.getUserID());
         pst.setObject(2, user.getUserName());
         pst.setObject(3, user.getF_Name());
@@ -52,7 +52,7 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public boolean delete(Integer id) throws ClassNotFoundException, SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement pst = connection.prepareStatement("DELETE FROM Users WHERE userID=? AND type = 'Seller'");
+        PreparedStatement pst = connection.prepareStatement("DELETE FROM Users WHERE userID=? AND type = 'Bidder'");
         pst.setObject(1, id);
         return pst.executeUpdate() > 0;
     }
@@ -82,7 +82,7 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public ArrayList<User> getAll() throws ClassNotFoundException, SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement pst = connection.prepareStatement("SELECT * FROM users WHERE type='Seller'");
+        PreparedStatement pst = connection.prepareStatement("SELECT * FROM users WHERE type='Bidder'");
         ResultSet resultSet = pst.executeQuery();
         ArrayList<User> allUsers = new ArrayList<>();
         while (resultSet.next()) {
@@ -97,7 +97,6 @@ public class SellerServiceImpl implements SellerService {
             user.setPassword(resultSet.getString(8));
             user.setImg(resultSet.getString(9));
             user.setType(resultSet.getString(10));
-            user.setStatus(resultSet.getString(11));
 
             allUsers.add(user);
         }

@@ -9,6 +9,8 @@ import service.custom.Impl.CategoryServiceImpl;
 import service.custom.ItemService;
 import service.custom.Impl.ItemServiceImpl;
 import util.DBConnection;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -21,13 +23,13 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
-
+@MultipartConfig(location = "D:\\SLIIT\\Computing\\2nd Year\\1st Sem\\OOP\\Online-Biding-System\\src\\main\\webapp\\assets\\uploadImg",
+        fileSizeThreshold = 1024 * 1024,
+        maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 @WebServlet("/ItemServlet")
 public class ItemServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -107,50 +109,58 @@ public class ItemServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String buttonType = request.getParameter("option");
+        System.out.println(buttonType);
         switch (buttonType) {
             case "submit":
-                try {
+                String userID = request.getParameter("userID");
+                String category_ID = request.getParameter("categoryID");
+                String itemName = request.getParameter("itemName");
+                String description = request.getParameter("description");
+                String price = request.getParameter("amount");
+                String status = "running";
 
-                    String userID = request.getParameter("userID");
-                    String category_ID = request.getParameter("categoryID");
-                    String itemName = request.getParameter("itemName");
-                    String description = request.getParameter("description");
-                    String price = request.getParameter("amount");
-                    String image = request.getParameter("itemImage");
-                    image = "itemIcon.jpg";
-                    String status = "running";
+                int catID = Integer.parseInt(category_ID);
+                double amount = Double.parseDouble(price);
+                int userId = Integer.parseInt(userID);
 
-                    int catID = Integer.parseInt(category_ID);
-                    double amount = Double.parseDouble(price);
-                    int userId = Integer.parseInt(userID);
+                //image uploading part
+                Part part = request.getPart("file");
+                String fileName = extractFileName(part);
+                String filePath = "D:\\SLIIT\\Computing\\2nd Year\\1st Sem\\OOP\\Online-Biding-System\\src\\main\\webapp\\assets\\uploadImg";
+                if (fileName != "") {
+                    String savePath = filePath + File.separator + fileName;
+                    File fileSaveDir = new File(savePath);
+                    part.write(savePath);
+                    try {
 
-                    Item item = new Item();
+                        Item item = new Item();
 
-                    item.setCategory_ID(catID);
-                    item.setUserID(userId);
-                    item.setName(itemName);
-                    item.setDescription(description);
-                    item.setPrice(amount);
-                    item.setImage(image);
-                    item.setStatus(status);
+                        item.setCategory_ID(catID);
+                        item.setUserID(userId);
+                        item.setName(itemName);
+                        item.setDescription(description);
+                        item.setPrice(amount);
+                        item.setImage(fileName);
+                        item.setStatus(status);
 
-                    ItemService itemService = new ItemServiceImpl();
-                    boolean itemAdd = itemService.add(item);
+                        ItemService itemService = new ItemServiceImpl();
+                        boolean itemAdd = itemService.add(item);
 
-                    HttpSession session = request.getSession();
-                    if (itemAdd) {
-                        session.setAttribute("message", "true");
-                        session.setAttribute("type", "add");
-                        response.sendRedirect(request.getContextPath() + "/views/admin/item.jsp");
-                    } else {
-                        session.setAttribute("message", "false");
-                        session.setAttribute("type", "add");
-                        response.sendRedirect(request.getContextPath() + "/views/admin/item.jsp");
+                        HttpSession session = request.getSession();
+                        if (itemAdd) {
+                            session.setAttribute("message", "true");
+                            session.setAttribute("type", "add");
+                            response.sendRedirect(request.getContextPath() + "/views/admin/item.jsp");
+                        } else {
+                            session.setAttribute("message", "false");
+                            session.setAttribute("type", "add");
+                            response.sendRedirect(request.getContextPath() + "/views/admin/item.jsp");
+                        }
+
+                    } catch (ClassNotFoundException | SQLException e) {
+
+                        e.printStackTrace();
                     }
-
-                } catch (ClassNotFoundException | SQLException e) {
-
-                    e.printStackTrace();
                 }
                 break;
             case "update":
@@ -166,50 +176,60 @@ public class ItemServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        try {
 
-            String ItemID = req.getParameter("itemID");
-            String userID = req.getParameter("userID");
-            String category_ID = req.getParameter("categoryID");
-            String itemName = req.getParameter("itemName");
-            String description = req.getParameter("description");
-            String price = req.getParameter("amount");
-            String image = req.getParameter("itemImage");
-            image = "itemIcon.jpg";
-            String status = "running";
+        String ItemID = req.getParameter("itemID");
+        String userID = req.getParameter("userID");
+        String category_ID = req.getParameter("categoryID");
+        String itemName = req.getParameter("itemName");
+        String description = req.getParameter("description");
+        String price = req.getParameter("amount");
+        String image = req.getParameter("itemImage");
+        image = "itemIcon.jpg";
+        String status = "running";
 
-            int catID = Integer.parseInt(category_ID);
-            double amount = Double.parseDouble(price);
-            int itemId = Integer.parseInt(ItemID);
-            int userId = Integer.parseInt(userID);
+        int catID = Integer.parseInt(category_ID);
+        double amount = Double.parseDouble(price);
+        int itemId = Integer.parseInt(ItemID);
+        int userId = Integer.parseInt(userID);
 
-            Item item = new Item();
+        //image uploading part
+        Part part = req.getPart("file");
+        String fileName = extractFileName(part);
+        String filePath = "D:\\SLIIT\\Computing\\2nd Year\\1st Sem\\OOP\\Online-Biding-System\\src\\main\\webapp\\assets\\uploadImg";
+        if (fileName != "") {
+            String savePath = filePath + File.separator + fileName;
+            File fileSaveDir = new File(savePath);
+            part.write(savePath);
+            try {
 
-            item.setItemID(itemId);
-            item.setCategory_ID(catID);
-            item.setUserID(userId);
-            item.setName(itemName);
-            item.setDescription(description);
-            item.setPrice(amount);
-            item.setImage(image);
-            item.setStatus(status);
+                Item item = new Item();
 
-            ItemService itemService = new ItemServiceImpl();
-            boolean itemUpdate = itemService.update(item);
-            HttpSession session = req.getSession();
-            if (itemUpdate) {
-                session.setAttribute("message", "true");
-                session.setAttribute("type", "update");
-                resp.sendRedirect(req.getContextPath() + "/views/admin/item.jsp");
-            } else {
-                session.setAttribute("message", "false");
-                session.setAttribute("type", "update");
-                resp.sendRedirect(req.getContextPath() + "/views/admin/item.jsp");
+                item.setItemID(itemId);
+                item.setCategory_ID(catID);
+                item.setUserID(userId);
+                item.setName(itemName);
+                item.setDescription(description);
+                item.setPrice(amount);
+                item.setImage(fileName);
+                item.setStatus(status);
+
+                ItemService itemService = new ItemServiceImpl();
+                boolean itemUpdate = itemService.update(item);
+                HttpSession session = req.getSession();
+                if (itemUpdate) {
+                    session.setAttribute("message", "true");
+                    session.setAttribute("type", "update");
+                    resp.sendRedirect(req.getContextPath() + "/views/admin/item.jsp");
+                } else {
+                    session.setAttribute("message", "false");
+                    session.setAttribute("type", "update");
+                    resp.sendRedirect(req.getContextPath() + "/views/admin/item.jsp");
+                }
+
+            } catch (ClassNotFoundException | SQLException e) {
+
+                e.printStackTrace();
             }
-
-        } catch (ClassNotFoundException | SQLException e) {
-
-            e.printStackTrace();
         }
 
     }
@@ -241,5 +261,14 @@ public class ItemServlet extends HttpServlet {
         }
     }
 
-
+    private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] item = contentDisp.split(";");
+        for (String s : item) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length() - 1);
+            }
+        }
+        return "";
+    }
 }

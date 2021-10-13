@@ -26,6 +26,11 @@
                     <i class="fas fa-user"></i>
                 </a>
             </li>
+            <li>
+                <a href="${pageContext.request.contextPath}/login">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
