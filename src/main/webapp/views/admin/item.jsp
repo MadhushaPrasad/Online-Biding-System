@@ -149,23 +149,23 @@
                         </form>
                     </div>
                     <div class="col-12">
-                        <form method="POST" action="${pageContext.request.contextPath}/ItemServlet">
-                            <%--                            <div class="row mb-2">--%>
-                            <%--                                <div class="col-lg-6 col-sm-12">--%>
-                            <%--                                    <div class="itemContainer">--%>
-
-                            <%--                                        <img id="itemImage">--%>
-                            <%--                                        <input type="text"--%>
-                            <%--                                               placeholder="Choose"--%>
-                            <%--                                               onfocus="(this.type='file')"--%>
-                            <%--                                               required--%>
-                            <%--                                               id="itemImageInput"--%>
-                            <%--                                               name="itemImage"--%>
-                            <%--                                        >--%>
-                            <%--                                        <button type="button" id="itemImageRemove">Remove</button>--%>
-                            <%--                                    </div>--%>
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
+                        <form method="post" action="${pageContext.request.contextPath}/ItemServlet"
+                              enctype="multipart/form-data">
+                            <div class="row mb-2">
+                                <div class="sellerContainer">
+                                    <img id="editProfileImage">
+                                    <input type="text"
+                                           placeholder="Choose"
+                                           onfocus="(this.type='file')"
+                                           required
+                                           id="editProfile"
+                                           name="file"
+                                    >
+                                    <button class="text-danger" type="button" id="bntRemoveProfile">
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
                             <div class="row mb-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="input-group mb-2">
@@ -241,9 +241,9 @@
         </div>
         <div class="item">
             <%--  Item table div--%>
-            <div class="row ml-md-2 mt-3">
+            <div class="row col-12 ml-md-2 mt-3">
                 <h4 class="mt-3 mb-4">Item List</h4>
-                <table class="table table-responsive">
+                <table class="table col-12 table-responsive">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -266,7 +266,8 @@
                             <td>${item.name}</td>
                             <td>${item.description}</td>
                             <td>${item.price}</td>
-                            <td>${item.image}</td>
+                            <td><img src="${pageContext.request.contextPath}/assets/uploadImg/${item.image}"
+                                     alt="userProfile" height="50px"></td>
                             <td>${item.status}</td>
                             <td>
                                 <i style='cursor: pointer' class='fas fa-edit btnEdit text-warning'
@@ -305,5 +306,6 @@
 <script src="${pageContext.request.contextPath}/assets/js/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/index.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/admin/item.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/admin/adminEditProfile.js"></script>
 </body>
 </html>
