@@ -138,8 +138,9 @@ VALUES ('nethmini99', 'nethmini', 'tharuka', 'tharukatharu@gmail.com', '07776390
         'Seller');
 
 INSERT INTO Users(userName, f_Name, l_Name, email, telephone, address, password, img, type,status)
-VALUES ('nethmini99', 'nethmini', 'tharuka', 'tharukatharu@gmail.com', '0777639027', 'Tangalle', '1234', 'profile.jpg',
-        'Admin','Offline');
+VALUES ('Madhush99', 'Madhusha', 'Prasad', 'madhushaprasad21@gmail.com', '0716035826', 'Kalutara', '1234',
+        'profile.jpg',
+        'Admin', 'Offline');
 INSERT INTO Item(category_ID, userID, name, description, price, image, status)
 VALUES (1, 2, 'Samsung Laptop', 'hsdghsdgdj', 150000, 'item.png', 'pending');
 
