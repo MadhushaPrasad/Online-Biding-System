@@ -1,6 +1,7 @@
 package service;
 
 import service.custom.Impl.CategoryServiceImpl;
+import service.custom.Impl.SellerServiceImpl;
 import service.custom.Impl.SubCategoryServiceImpl;
 
 public class ServiceFactory {
@@ -23,12 +24,14 @@ public class ServiceFactory {
                 return new CategoryServiceImpl();
             case SUBCATEGORY:
                 return new SubCategoryServiceImpl();
+            case SELLER:
+                return new SellerServiceImpl();
             default:
                 return null;
         }
     }
 
     public enum ServiceType {
-        CATEGORY, SUBCATEGORY
+        CATEGORY, SUBCATEGORY, SELLER
     }
 }

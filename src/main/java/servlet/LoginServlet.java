@@ -26,8 +26,9 @@ public class LoginServlet extends HttpServlet {
             LoginService loginService = new LoginServiceImpl();
 
             boolean login = loginService.checkUser(email, password);
-            User user = loginService.checkUserType(email, password);
-            String type = user.getType();
+            System.out.println(login);
+            User userTYpe = loginService.checkUserType(email, password);
+            String type = userTYpe.getType();
             System.out.println(type);
 
             if (login) {

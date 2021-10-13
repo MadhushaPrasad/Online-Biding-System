@@ -14,6 +14,8 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public boolean checkUser(String email, String password) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
+        System.out.println(email);
+        System.out.println(password);
         PreparedStatement pst = connection.prepareStatement("SELECT * FROM users WHERE email=? AND password=?");
         pst.setObject(1,email);
         pst.setObject(2,password);
@@ -33,7 +35,7 @@ public class LoginServiceImpl implements LoginService {
         pst.setObject(2,password);
         ResultSet rst = pst.executeQuery();
         User user = new User();
-        if (rst.next()) {
+        while (rst.next()) {
             user.setUserID(rst.getInt(1));
             user.setUserName(rst.getString(2));
             user.setF_Name(rst.getString(3));
@@ -44,9 +46,8 @@ public class LoginServiceImpl implements LoginService {
             user.setPassword(rst.getString(8));
             user.setImg(rst.getString(9));
             user.setType(rst.getString(10));
-            return user;
-        } else {
-            return user;
+            user.setStatus(rst.getString(11));
         }
+        return user;
     }
 }

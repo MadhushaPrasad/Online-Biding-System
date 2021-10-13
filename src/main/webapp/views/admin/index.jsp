@@ -30,14 +30,15 @@
     var funcType = "<%= type %>";
 
     navigatePages(message, funcType);
-    console.log(message,funcType);
+    console.log(message, funcType);
 
     function navigatePages(mes, btnType) {
         if (mes === 'LoginError') {
-            swal("Please Login again", {
-                icon: "error",
-            });
+            // swal("Please Login again", {
+            //     icon: "error",
+            // });
             <% session1.setAttribute("loignMessage","LoginError"); %>
+            window.location = "http://localhost:8080/Online-Biding-System/views/admin/dashboard.jsp"
 
         } else if (btnType === 'Admin' && mes == 'loginSuccess') {
             window.location = "http://localhost:8080/Online-Biding-System/views/admin/dashboard.jsp"
