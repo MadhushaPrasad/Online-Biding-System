@@ -137,9 +137,9 @@ INSERT INTO Users(userName, f_Name, l_Name, email, telephone, address, password,
 VALUES ('nethmini99', 'nethmini', 'tharuka', 'tharukatharu@gmail.com', '0777639027', 'Tangalle', '1234', 'profile.jpg',
         'Seller');
 
-INSERT INTO Users(userName, f_Name, l_Name, email, telephone, address, password, img, type)
+INSERT INTO Users(userName, f_Name, l_Name, email, telephone, address, password, img, type,status)
 VALUES ('nethmini99', 'nethmini', 'tharuka', 'tharukatharu@gmail.com', '0777639027', 'Tangalle', '1234', 'profile.jpg',
-        'Admin');
+        'Admin','Offline');
 INSERT INTO Item(category_ID, userID, name, description, price, image, status)
 VALUES (1, 2, 'Samsung Laptop', 'hsdghsdgdj', 150000, 'item.png', 'pending');
 

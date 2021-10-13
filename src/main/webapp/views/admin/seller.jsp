@@ -293,7 +293,7 @@
                             <td>${User.address}</td>
                             <td><img src="${pageContext.request.contextPath}/assets/uploadImg/${User.img}"
                                      alt="userProfile" height="50px"></td>
-                            <td>${User.password}</td>
+<%--                            <td>${User.password}</td>--%>
                             <td>${User.type}</td>
                             <td>${User.status}</td>
                             <td>

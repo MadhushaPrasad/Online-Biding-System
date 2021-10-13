@@ -1,9 +1,7 @@
 package servlet;
 
-import model.Bid;
 import model.User;
-import service.custom.BidService;
-import service.custom.Impl.BidServiceImpl;
+import service.custom.Impl.BidderServiceImpl;
 import service.custom.Impl.SellerServiceImpl;
 import service.custom.SellerService;
 
@@ -20,8 +18,8 @@ import java.util.ArrayList;
 @MultipartConfig(location = "D:\\SLIIT\\Computing\\2nd Year\\1st Sem\\OOP\\Online-Biding-System\\src\\main\\webapp\\assets\\uploadImg",
         fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
-@WebServlet("/seller")
-public class SellerServlet extends HttpServlet {
+@WebServlet("/bidder")
+public class BidderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String buttonType = req.getParameter("option");
@@ -54,19 +52,19 @@ public class SellerServlet extends HttpServlet {
                         user.setAddress(address);
                         user.setPassword("1234");
                         user.setImg(fileName);
-                        user.setType("Seller");
+                        user.setType("Bidder");
                         user.setStatus("offline");
-                        SellerService service = new SellerServiceImpl();
+                        SellerService service = new BidderServiceImpl();
                         boolean add = service.add(user);
                         HttpSession session = req.getSession();
                         if (add) {
                             session.setAttribute("message", "true");
                             session.setAttribute("type", "add");
-                            resp.sendRedirect(req.getContextPath() + "/views/admin/seller.jsp");
+                            resp.sendRedirect(req.getContextPath() + "/views/admin/bidder.jsp");
                         } else {
                             session.setAttribute("message", "false");
                             session.setAttribute("type", "add");
-                            resp.sendRedirect(req.getContextPath() + "/views/admin/seller.jsp");
+                            resp.sendRedirect(req.getContextPath() + "/views/admin/bidder.jsp");
                         }
 
                     } catch (ClassNotFoundException | SQLException e) {
@@ -118,20 +116,20 @@ public class SellerServlet extends HttpServlet {
                 user.setAddress(address);
                 user.setPassword("1234");
                 user.setImg(fileName);
-                user.setType("Seller");
+                user.setType("Bidder");
                 user.setStatus("offline");
-                SellerService service = new SellerServiceImpl();
+                SellerService service = new BidderServiceImpl();
                 boolean update = service.update(user);
 
                 HttpSession session = req.getSession();
                 if (update) {
                     session.setAttribute("message", "true");
                     session.setAttribute("type", "update");
-                    resp.sendRedirect(req.getContextPath() + "/views/admin/seller.jsp");
+                    resp.sendRedirect(req.getContextPath() + "/views/admin/bidder.jsp");
                 } else {
                     session.setAttribute("message", "false");
                     session.setAttribute("type", "update");
-                    resp.sendRedirect(req.getContextPath() + "/views/admin/seller.jsp");
+                    resp.sendRedirect(req.getContextPath() + "/views/admin/bidder.jsp");
                 }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -146,6 +144,7 @@ public class SellerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String buttonType = req.getParameter("option");
+        System.out.println("Hello");
         if (buttonType == null) {
             buttonType = "getAll";
         }
@@ -154,24 +153,23 @@ public class SellerServlet extends HttpServlet {
                 String userID = req.getParameter("sellerId");
                 int id = Integer.parseInt(userID);
                 try {
-                    SellerService service = new SellerServiceImpl();
+                    SellerService service = new BidderServiceImpl();
                     User search = service.search(id);
                     ArrayList<User> searchAll = new ArrayList<>();
                     searchAll.add(search);
                     req.setAttribute("userDetails", searchAll);
-                    RequestDispatcher userDetails1 = req.getRequestDispatcher("/views/admin/seller.jsp");
-                    RequestDispatcher userDetails2 = req.getRequestDispatcher("/views/admin/dashboard.jsp");
-                    userDetails2.forward(req, resp);
+                    RequestDispatcher userDetails1 = req.getRequestDispatcher("/views/admin/bidder.jsp");
+                    userDetails1.forward(req, resp);
                 } catch (ClassNotFoundException | SQLException e) {
                     e.printStackTrace();
                 }
                 break;
             case "getAll":
-                SellerService service1 = new SellerServiceImpl();
+                SellerService service1 = new BidderServiceImpl();
                 try {
                     ArrayList<User> all = service1.getAll();
                     req.setAttribute("userDetails", all);
-                    RequestDispatcher userDetails = req.getRequestDispatcher("/views/admin/seller.jsp");
+                    RequestDispatcher userDetails = req.getRequestDispatcher("/views/admin/bidder.jsp");
                     userDetails.forward(req, resp);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
@@ -194,17 +192,17 @@ public class SellerServlet extends HttpServlet {
         String userID = req.getParameter("sellerId");
         int id = Integer.parseInt(userID);
         try {
-            SellerService service = new SellerServiceImpl();
+            SellerService service = new BidderServiceImpl();
             boolean delete = service.delete(id);
             HttpSession session = req.getSession();
             if (delete) {
                 session.setAttribute("message", "true");
                 session.setAttribute("type", "delete");
-                resp.sendRedirect(req.getContextPath() + "/views/admin/seller.jsp");
+                resp.sendRedirect(req.getContextPath() + "/views/admin/bidder.jsp");
             } else {
                 session.setAttribute("message", "false");
                 session.setAttribute("type", "delete");
-                resp.sendRedirect(req.getContextPath() + "/views/admin/seller.jsp");
+                resp.sendRedirect(req.getContextPath() + "/views/admin/bidder.jsp");
             }
 
         } catch (ClassNotFoundException e) {
