@@ -8,3 +8,4 @@ hamburger.addEventListener('click', function () {
 if (window.innerWidth < 768) {
     wrapper.classList.add('collapses');
 }
+

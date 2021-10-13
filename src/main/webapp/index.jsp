@@ -26,6 +26,29 @@
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 </head>
 <body>
+<%
+    HttpSession session1 = request.getSession();
+    String message = (String) session1.getAttribute("message");
+    String type = (String) session1.getAttribute("type");
+%>
+<script>
+    var message = "<%=message%>";
+    var funcType = "<%= type %>";
+
+    navigatePages(message, funcType);
+
+    function navigatePages(mes, btnType) {
+        if (mes === 'LoginError') {
+            swal("Please Login again", {
+                icon: "Error",
+            });
+            <% session1.setAttribute("message",""); %>
+
+        }
+
+    }
+
+</script>
 <%--navgation bar--%>
 <%@ include file="views/client/includes/header.jsp" %>
 <main class="pb-1 pt-1 main">
