@@ -5,7 +5,7 @@ $(document).ready(function () {
 // search category by id Function
 $("#btnCategorySearch").on('click', function () {
     const categoryID = $('#categoryId').val();
-    console.log(categoryID)
+    
     $("#categoryTableBody").empty();
     $.ajax({
         url: "http://localhost:8080/Online-Biding-System/category",
@@ -21,13 +21,13 @@ $("#btnCategorySearch").on('click', function () {
             "<td><i style='cursor: pointer' class='fas fa-trash-alt btnDelte text-danger' onclick='deleteCategory()'></i></td></tr>";
         $("#categoryTableBody").append(row);
     }).fail(function (xhr) {
-        console.log(xhr);
+        
     });
 });
 
 // call doGet function of category servlet
 function getAllCategory() {
-    console.log("get All")
+    
     $("#categoryTableBody").empty();
     $.ajax({
         url: "http://localhost:8080/Online-Biding-System/category",
@@ -44,7 +44,7 @@ function getAllCategory() {
             $("#categoryTableBody").append(row);
         }
     }).fail(function (xhr) {
-        console.log(xhr);
+        
     });
 }
 
@@ -57,7 +57,7 @@ $('#btnCreate').click(function () {
         method: "POST",
         data: formData
     }).done(function (res) {
-        console.log(res);
+        
         swal("Category is Added", {
             icon: "success",
         });
@@ -65,7 +65,7 @@ $('#btnCreate').click(function () {
         clearTextFields();
         getAllCategoryNames();
     }).fail(function (xhr) {
-        console.log(xhr);
+        
         swal("Something Wrong Please try again", {
             icon: "error",
         });
@@ -86,7 +86,6 @@ function deleteCategory() {
             if (willDelete) {
                 let categoryID = $('#categoryId').val();
 
-                console.log(categoryID);
                 $.ajax({
                     url: "http://localhost:8080/Online-Biding-System/category",
                     method: "DELETE",
@@ -97,13 +96,12 @@ function deleteCategory() {
                 }).done(function (resp) {
                     if (resp === 'false') {
                         if (categoryID === '') {
-                            console.log("please click edit button before delete");
                             swal("please click edit button before delete", {
                                 icon: "error",
                             });
                         }
                     } else if (resp === 'true') {
-                        console.log(resp);
+                        
                         swal("Poof! Your imaginary file has been deleted!", {
                             icon: "success",
                         });
@@ -120,7 +118,7 @@ function deleteCategory() {
                     }
                     // getAllCategory();
                 }).fail(function (xhr) {
-                    console.log("please click edit button before delete");
+                    
                     swal("Poof! Your imaginary file hasn't been deleted!", {
                         icon: "error",
                     });
@@ -161,7 +159,7 @@ $('#btnUpdateCategory').click(function () {
     }).done(function (resp) {
         if (resp === 'false') {
             if (categoryID === '') {
-                console.log("please click edit button before delete");
+                
                 swal("please click edit button before delete", {
                     icon: "error",
                 });
@@ -170,7 +168,7 @@ $('#btnUpdateCategory').click(function () {
                 });
             }
         } else if (resp === 'true') {
-            console.log(resp);
+            
             swal("Category is Updated", {
                 icon: "success",
             });
